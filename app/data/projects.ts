@@ -145,7 +145,9 @@ export const projects: Project[] = [
     year: "2026",
     description:
       "Live event coverage, unscripted, shot solo — a talking-head reel with Lululemon's collection rep. Add specifics about the event and turnaround.",
-    placeholder: true,
+    videoUrl:
+      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/lululemon-reel-1.mp4",
+    placeholder: false,
   },
   {
     slug: "merrell-influencer-reel",
