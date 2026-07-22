@@ -171,7 +171,9 @@ export const projects: Project[] = [
     year: "2026",
     description:
       "An Instagram reel collaboration between Porsche and Change Studio. Add details about the brief and your role.",
-    placeholder: true,
+    videoUrl:
+      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/Hubert%20Porsche%20v3%206.MOV",
+    placeholder: false,
     featured: true,
   },
 ];
