@@ -158,7 +158,9 @@ export const projects: Project[] = [
     orientation: "vertical",
     year: "2026",
     description: "Add details about the brief and the influencer collaboration.",
-    placeholder: true,
+    videoUrl:
+      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/merrell-influencer-reel.mp4",
+    placeholder: false,
   },
   {
     slug: "carpatree-influencer-reel",
