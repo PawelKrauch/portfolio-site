@@ -23,7 +23,7 @@ export type Project = {
   description: string;
   videoUrl?: string;
   placeholder: boolean;
-  secondaryVideo?: SecondaryVideo;
+  secondaryVideos?: SecondaryVideo[];
   stats?: Stat[];
   // Shown as full-bleed slides in the homepage Hero slideshow, in array order.
   featured?: boolean;
@@ -51,10 +51,12 @@ export const projects: Project[] = [
       "A 12-minute brand documentary for Purely Athletics and Adidas. Add the brief, your role, and how the shoot came together.",
     placeholder: true,
     featured: true,
-    secondaryVideo: {
-      label: "Instagram Trailer",
-      placeholder: true,
-    },
+    secondaryVideos: [
+      {
+        label: "Instagram Trailer",
+        placeholder: true,
+      },
+    ],
   },
   {
     slug: "purely-athletics-brand-launch-intro",
@@ -97,10 +99,12 @@ export const projects: Project[] = [
       { value: "6,000", label: "Account followers" },
       { value: "4", label: "Episodes" },
     ],
-    secondaryVideo: {
-      label: "Behind the Scenes — shot & edited solo",
-      placeholder: true,
-    },
+    secondaryVideos: [
+      {
+        label: "Behind the Scenes — shot & edited solo",
+        placeholder: true,
+      },
+    ],
   },
   {
     slug: "knox-studio-launch",
@@ -112,8 +116,24 @@ export const projects: Project[] = [
     year: "2026",
     description:
       "A 6-reel Instagram launch campaign for KNOX Studio — the first Lululemon-powered studio in Poland. Add details about the rollout and results.",
-    placeholder: true,
+    videoUrl:
+      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/knox-lululemon-intro.mp4",
+    placeholder: false,
     featured: true,
+    secondaryVideos: [
+      {
+        label: "KNOX Method",
+        videoUrl:
+          "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/knox-method.mp4",
+        placeholder: false,
+      },
+      {
+        label: "KNOX BTM",
+        videoUrl:
+          "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/knox-btm.mp4",
+        placeholder: false,
+      },
+    ],
   },
   {
     slug: "lululemon-event-reel",

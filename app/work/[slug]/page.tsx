@@ -83,29 +83,39 @@ export default async function ProjectPage({
             </div>
           )}
 
-          {project.secondaryVideo && (
-            <div className="mt-12 border-t border-border pt-10">
-              <p className="mb-4 text-sm text-white/50">
-                {project.secondaryVideo.label}
-              </p>
-              <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-border bg-surface">
-                {project.secondaryVideo.placeholder ? (
-                  <div className="flex h-full flex-col items-center justify-center gap-2 border-2 border-dashed border-white/10 p-4 text-center text-white/30">
-                    <span className="text-xs uppercase tracking-widest">
-                      Video placeholder
-                    </span>
-                    <span className="text-[11px] text-white/20">
-                      Drop a web-optimized mp4 or embed here
-                    </span>
+          {project.secondaryVideos && project.secondaryVideos.length > 0 && (
+            <div className="mt-12 flex flex-col gap-10 border-t border-border pt-10">
+              {project.secondaryVideos.map((secondaryVideo) => (
+                <div key={secondaryVideo.label}>
+                  <p className="mb-4 text-sm text-white/50">
+                    {secondaryVideo.label}
+                  </p>
+                  <div
+                    className={`relative w-full ${aspectClass} ${
+                      project.orientation === "vertical"
+                        ? "mx-auto max-w-sm"
+                        : ""
+                    } overflow-hidden rounded-lg border border-border bg-surface`}
+                  >
+                    {secondaryVideo.placeholder ? (
+                      <div className="flex h-full flex-col items-center justify-center gap-2 border-2 border-dashed border-white/10 p-4 text-center text-white/30">
+                        <span className="text-xs uppercase tracking-widest">
+                          Video placeholder
+                        </span>
+                        <span className="text-[11px] text-white/20">
+                          Drop a web-optimized mp4 or embed here
+                        </span>
+                      </div>
+                    ) : (
+                      <video
+                        src={secondaryVideo.videoUrl}
+                        className="h-full w-full object-cover"
+                        controls
+                      />
+                    )}
                   </div>
-                ) : (
-                  <video
-                    src={project.secondaryVideo.videoUrl}
-                    className="h-full w-full object-cover"
-                    controls
-                  />
-                )}
-              </div>
+                </div>
+              ))}
             </div>
           )}
         </div>
