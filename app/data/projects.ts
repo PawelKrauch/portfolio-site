@@ -64,11 +64,13 @@ export const projects: Project[] = [
     client: "Purely Athletics",
     category: "Brand Launch",
     group: "Brand Films",
-    orientation: "horizontal",
+    orientation: "vertical",
     year: "2026",
     description:
       "An intro film for the Purely Athletics brand launch. Add the brief, your role, and how it came together.",
-    placeholder: true,
+    videoUrl:
+      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/purely-athletics-brand-launch-intro.mp4",
+    placeholder: false,
   },
   {
     slug: "canyon-spec-ad",
