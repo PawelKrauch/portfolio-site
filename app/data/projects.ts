@@ -22,8 +22,14 @@ export type Project = {
   year: string;
   description: string;
   videoUrl?: string;
+  // Optional label shown above the hero video — mainly useful when the hero
+  // is one entry in a numbered series (e.g. "Episode 4") alongside `episodes`.
+  videoLabel?: string;
   placeholder: boolean;
   secondaryVideos?: SecondaryVideo[];
+  // Multi-episode series (e.g. a numbered vertical series) — rendered as a
+  // list of full clips below the hero video, in array order.
+  episodes?: SecondaryVideo[];
   stats?: Stat[];
   // Shown as full-bleed slides in the homepage Hero slideshow, in array order.
   featured?: boolean;
@@ -94,12 +100,35 @@ export const projects: Project[] = [
     year: "2026",
     description:
       "A 4-episode vertical series covering member results and stats — grew organically to 80,000+ views on a 6,000-follower account. Add details about the format and your role.",
-    placeholder: true,
+    videoUrl:
+      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/so-well-e4.mp4",
+    videoLabel: "Episode 4",
+    placeholder: false,
     featured: true,
     stats: [
       { value: "80,000+", label: "Organic views" },
       { value: "6,000", label: "Account followers" },
       { value: "4", label: "Episodes" },
+    ],
+    episodes: [
+      {
+        label: "Episode 3",
+        videoUrl:
+          "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/so-well-e3.mp4",
+        placeholder: false,
+      },
+      {
+        label: "Episode 2",
+        videoUrl:
+          "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/so-well-e2.mp4",
+        placeholder: false,
+      },
+      {
+        label: "Episode 1",
+        videoUrl:
+          "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/so-well-e1.mp4",
+        placeholder: false,
+      },
     ],
     secondaryVideos: [
       {
