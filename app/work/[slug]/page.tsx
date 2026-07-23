@@ -23,6 +23,14 @@ export default async function ProjectPage({
   const aspectClass =
     project.orientation === "vertical" ? "aspect-[9/16]" : "aspect-video";
 
+  const hasEpisodes = project.episodes && project.episodes.length > 0;
+
+  const heroClip = {
+    label: project.videoLabel,
+    videoUrl: project.videoUrl,
+    placeholder: project.placeholder,
+  };
+
   return (
     <div className="flex flex-1 flex-col">
       <Nav />
@@ -35,34 +43,72 @@ export default async function ProjectPage({
             ← Back to work
           </Link>
 
-          {project.videoLabel && (
-            <p className="mt-8 text-sm text-white/50">{project.videoLabel}</p>
+          {!hasEpisodes && (
+            <>
+              {project.videoLabel && (
+                <p className="mt-8 text-sm text-white/50">
+                  {project.videoLabel}
+                </p>
+              )}
+
+              <div
+                className={`relative w-full ${
+                  project.videoLabel ? "mt-4" : "mt-8"
+                } ${aspectClass} ${
+                  project.orientation === "vertical" ? "mx-auto max-w-sm" : ""
+                } overflow-hidden rounded-lg border border-border bg-surface`}
+              >
+                {project.placeholder ? (
+                  <div className="flex h-full flex-col items-center justify-center gap-2 border-2 border-dashed border-white/10 p-4 text-center text-white/30">
+                    <span className="text-xs uppercase tracking-widest">
+                      Video placeholder
+                    </span>
+                    <span className="text-[11px] text-white/20">
+                      Drop a web-optimized mp4 or embed here
+                    </span>
+                  </div>
+                ) : (
+                  <video
+                    src={project.videoUrl}
+                    className="h-full w-full object-cover"
+                    controls
+                  />
+                )}
+              </div>
+            </>
           )}
 
-          <div
-            className={`relative w-full ${
-              project.videoLabel ? "mt-4" : "mt-8"
-            } ${aspectClass} ${
-              project.orientation === "vertical" ? "mx-auto max-w-sm" : ""
-            } overflow-hidden rounded-lg border border-border bg-surface`}
-          >
-            {project.placeholder ? (
-              <div className="flex h-full flex-col items-center justify-center gap-2 border-2 border-dashed border-white/10 p-4 text-center text-white/30">
-                <span className="text-xs uppercase tracking-widest">
-                  Video placeholder
-                </span>
-                <span className="text-[11px] text-white/20">
-                  Drop a web-optimized mp4 or embed here
-                </span>
-              </div>
-            ) : (
-              <video
-                src={project.videoUrl}
-                className="h-full w-full object-cover"
-                controls
-              />
-            )}
-          </div>
+          {hasEpisodes && (
+            <div className="mt-8 flex gap-6 overflow-x-auto pb-2">
+              {[heroClip, ...project.episodes!].map((clip, index) => (
+                <div key={clip.label ?? index} className="w-56 flex-shrink-0 sm:w-64">
+                  {clip.label && (
+                    <p className="mb-4 text-sm text-white/50">{clip.label}</p>
+                  )}
+                  <div
+                    className={`relative w-full ${aspectClass} overflow-hidden rounded-lg border border-border bg-surface`}
+                  >
+                    {clip.placeholder ? (
+                      <div className="flex h-full flex-col items-center justify-center gap-2 border-2 border-dashed border-white/10 p-4 text-center text-white/30">
+                        <span className="text-xs uppercase tracking-widest">
+                          Video placeholder
+                        </span>
+                        <span className="text-[11px] text-white/20">
+                          Drop a web-optimized mp4 or embed here
+                        </span>
+                      </div>
+                    ) : (
+                      <video
+                        src={clip.videoUrl}
+                        className="h-full w-full object-cover"
+                        controls
+                      />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
           <div className="mt-8 flex flex-col gap-3">
             <h1 className="text-2xl font-semibold sm:text-3xl">
@@ -84,42 +130,6 @@ export default async function ProjectPage({
                     {stat.value}
                   </p>
                   <p className="mt-1 text-xs text-white/50">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {project.episodes && project.episodes.length > 0 && (
-            <div className="mt-12 flex flex-col gap-10 border-t border-border pt-10">
-              {project.episodes.map((episode) => (
-                <div key={episode.label}>
-                  <p className="mb-4 text-sm text-white/50">
-                    {episode.label}
-                  </p>
-                  <div
-                    className={`relative w-full ${aspectClass} ${
-                      project.orientation === "vertical"
-                        ? "mx-auto max-w-sm"
-                        : ""
-                    } overflow-hidden rounded-lg border border-border bg-surface`}
-                  >
-                    {episode.placeholder ? (
-                      <div className="flex h-full flex-col items-center justify-center gap-2 border-2 border-dashed border-white/10 p-4 text-center text-white/30">
-                        <span className="text-xs uppercase tracking-widest">
-                          Video placeholder
-                        </span>
-                        <span className="text-[11px] text-white/20">
-                          Drop a web-optimized mp4 or embed here
-                        </span>
-                      </div>
-                    ) : (
-                      <video
-                        src={episode.videoUrl}
-                        className="h-full w-full object-cover"
-                        controls
-                      />
-                    )}
-                  </div>
                 </div>
               ))}
             </div>
