@@ -65,20 +65,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "purely-athletics-brand-launch-intro",
-    title: "Purely Athletics — Brand Launch Intro",
-    client: "Purely Athletics",
-    category: "Brand Launch",
-    group: "Brand Films",
-    orientation: "vertical",
-    year: "2026",
-    description:
-      "An intro film for the Purely Athletics brand launch. Add the brief, your role, and how it came together.",
-    videoUrl:
-      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/purely-athletics-brand-launch-intro.mp4",
-    placeholder: false,
-  },
-  {
     slug: "canyon-spec-ad",
     title: "Canyon — Spec Ad",
     client: "Canyon (spec / self-initiated)",
@@ -90,6 +76,20 @@ export const projects: Project[] = [
       "Self-initiated spec ad for Canyon — not a commissioned client project. Add details about the concept and execution.",
     videoUrl:
       "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/canyon-spec-ad.mp4",
+    placeholder: false,
+  },
+  {
+    slug: "purely-athletics-brand-launch-intro",
+    title: "Purely Athletics — Brand Launch Intro",
+    client: "Purely Athletics",
+    category: "Brand Launch",
+    group: "Brand Films",
+    orientation: "vertical",
+    year: "2026",
+    description:
+      "An intro film for the Purely Athletics brand launch. Add the brief, your role, and how it came together.",
+    videoUrl:
+      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/purely-athletics-brand-launch-intro.mp4",
     placeholder: false,
   },
   {
