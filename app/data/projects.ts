@@ -88,7 +88,9 @@ export const projects: Project[] = [
     year: "2026",
     description:
       "Self-initiated spec ad for Canyon — not a commissioned client project. Add details about the concept and execution.",
-    placeholder: true,
+    videoUrl:
+      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/canyon-spec-ad.mp4",
+    placeholder: false,
   },
   {
     slug: "so-well-gym-series",
