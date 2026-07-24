@@ -11,10 +11,13 @@ export default function About() {
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-6 text-lg text-white/70">
             <p>
-              I&apos;m a freelance filmmaker and director. Add 3-4 sentences
-              here about your background, the kind of work you shoot, and what
-              makes your approach distinct — this is what an agency producer
-              reads before deciding to reach out.
+              I&apos;m a freelance filmmaker and director working with brands
+              and agencies on commercial and branded content. I lean on AI
+              throughout preproduction — concepting, shot planning,
+              scheduling — to move faster and shoot with more precision,
+              which lets me deliver agency-level results working solo or
+              with a small, focused crew. The outcome is commercial-grade
+              work without the overhead of a full production house.
             </p>
             <p>
               Available for commercial, branded content, and campaign work
