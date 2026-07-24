@@ -55,7 +55,9 @@ export const projects: Project[] = [
     year: "2026",
     description:
       "A 12-minute brand documentary for Purely Athletics and Adidas. Add the brief, your role, and how the shoot came together.",
-    placeholder: true,
+    videoUrl:
+      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/purely-athletics-adidas-documentary-v1.mov",
+    placeholder: false,
     featured: true,
     secondaryVideos: [
       {
