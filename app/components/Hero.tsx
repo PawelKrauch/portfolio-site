@@ -12,13 +12,11 @@ function tagline(description: string) {
 
 export default function Hero() {
   const [active, setActive] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [indicatorVisible, setIndicatorVisible] = useState(true);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -27,25 +25,34 @@ export default function Hero() {
           if (index !== -1) setActive(index);
         });
       },
-      { root: container, threshold: 0.6 }
+      { threshold: 0.6 }
     );
 
     slideRefs.current.forEach((el) => el && observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIndicatorVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section
-      ref={containerRef}
-      className="relative h-screen snap-y snap-mandatory overflow-y-auto"
-    >
+    <section ref={sectionRef} className="relative">
       {slides.map((project, i) => (
         <div
           key={project.slug}
           ref={(el) => {
             slideRefs.current[i] = el;
           }}
-          className="relative flex h-screen w-full snap-start snap-always items-center justify-center overflow-hidden bg-surface"
+          className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-surface"
         >
           <div
             className="pointer-events-none absolute inset-0 opacity-30 blur-3xl"
@@ -92,14 +99,16 @@ export default function Hero() {
         </div>
       ))}
 
-      <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/40">
-        <span className="text-[11px] uppercase tracking-widest">
-          Scroll to explore
-        </span>
-        <span className="text-[11px]">
-          {String(active + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
-        </span>
-      </div>
+      {indicatorVisible && (
+        <div className="fixed bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/40">
+          <span className="text-[11px] uppercase tracking-widest">
+            Scroll to explore
+          </span>
+          <span className="text-[11px]">
+            {String(active + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+          </span>
+        </div>
+      )}
     </section>
   );
 }
