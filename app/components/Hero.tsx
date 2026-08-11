@@ -38,10 +38,27 @@ export default function Hero() {
     video.addEventListener("ended", loopAfterIntro);
     // Fallback in case timeupdate is throttled before reaching INTRO_END.
     const fallback = window.setTimeout(() => setRevealed(true), INTRO_END * 1000 + 500);
+
+    // Mobile autoplay hardening. The markup is already muted + playsInline, but
+    // some phones (notably iOS Low Power Mode / data-saver) block even muted
+    // autoplay, leaving the reel frozen on its poster. Force the properties on,
+    // attempt playback, and — if it was blocked — start the reel on the first
+    // user interaction so it never stays a still frame.
+    video.muted = true;
+    video.playsInline = true;
+    const tryPlay = () => void video.play().catch(() => {});
+    tryPlay();
+    const onFirstInteract = () => tryPlay();
+    const gestureOpts = { once: true, passive: true } as const;
+    window.addEventListener("touchstart", onFirstInteract, gestureOpts);
+    window.addEventListener("pointerdown", onFirstInteract, gestureOpts);
+
     return () => {
       video.removeEventListener("timeupdate", onTime);
       video.removeEventListener("ended", loopAfterIntro);
       window.clearTimeout(fallback);
+      window.removeEventListener("touchstart", onFirstInteract);
+      window.removeEventListener("pointerdown", onFirstInteract);
     };
   }, []);
 
