@@ -1,15 +1,44 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { projects, type Project } from "../data/projects";
 import Reveal from "./Reveal";
 
-// Big, auto-playing "hero" cards for the flagged featured pieces — each one its
-// own animated screen that clicks through to the full detail page (data +
-// videos). Sits between the showreel Hero and the full Work grid.
+// Big "hero" cards for the flagged featured pieces — each its own animated
+// screen that clicks through to the full detail page (data + videos). Sits
+// between the showreel Hero and the full Work grid.
 //
 // Tiles are uniform squares (object-cover crop) so the grid stays symmetrical
 // whatever the footage shape; the native aspect shows in full on the detail
 // page.
+//
+// Playback is lazy: videos are NOT preloaded or autoplayed on page load — they
+// only start once the card scrolls into view (and pause when it leaves). This
+// keeps the (large) featured clips from competing with the hero reel for
+// bandwidth while the hero is still on screen.
 function FeaturedCard({ project }: { project: Project }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          void video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Link
       href={`/work/${project.slug}`}
@@ -17,13 +46,13 @@ function FeaturedCard({ project }: { project: Project }) {
     >
       {project.videoUrl && (
         <video
+          ref={videoRef}
           src={project.videoUrl}
           className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-          autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
         />
       )}
       <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/10 to-black/0 p-5 sm:p-6">
