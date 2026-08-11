@@ -12,7 +12,7 @@ export default function Work() {
     <section id="work" className="px-6 py-16 sm:px-10">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 flex items-baseline gap-3">
-          <span className="text-xs font-medium text-accent">01</span>
+          <span className="text-xs font-medium text-accent">02</span>
           <h2 className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
             Selected Work
           </h2>
@@ -20,7 +20,11 @@ export default function Work() {
 
         <div className="flex flex-col gap-16">
           {groups.map(({ name, gridClass }) => {
-            const groupProjects = projects.filter((p) => p.group === name);
+            // Featured pieces get their own big cards up top — keep the grid to
+            // the rest of the catalog so nothing shows twice.
+            const groupProjects = projects.filter(
+              (p) => p.group === name && !p.placeholder && !p.featured
+            );
             if (groupProjects.length === 0) return null;
 
             return (

@@ -54,7 +54,7 @@ export const projects: Project[] = [
     orientation: "horizontal",
     year: "2026",
     description:
-      "A 12-minute brand documentary for Purely Athletics and Adidas. Add the brief, your role, and how the shoot came together.",
+      "A 12-minute brand documentary for Purely Athletics and Adidas — a long-form piece built to carry the brand's story with the pacing and polish of a produced film.",
     videoUrl:
       "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/purely-athletics-adidas-documentary-v1.mov",
     placeholder: false,
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     orientation: "horizontal",
     year: "2026",
     description:
-      "Self-initiated spec ad for Canyon — not a commissioned client project. Add details about the concept and execution.",
+      "A self-initiated spec ad for Canyon, taken from concept through to final grade — an exercise in a cinematic, product-led idea executed end to end.",
     videoUrl:
       "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/canyon-spec-ad.mp4",
     placeholder: false,
@@ -89,7 +89,7 @@ export const projects: Project[] = [
     orientation: "vertical",
     year: "2026",
     description:
-      "An intro film for the Purely Athletics brand launch. Add the brief, your role, and how it came together.",
+      "A short launch film introducing the Purely Athletics brand — a fast, energetic vertical cut made to open the campaign and set its tone.",
     videoUrl:
       "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/purely-athletics-brand-launch-intro.mp4",
     placeholder: false,
@@ -103,7 +103,7 @@ export const projects: Project[] = [
     orientation: "vertical",
     year: "2026",
     description:
-      "A 4-episode vertical series covering member results and stats — grew organically to 80,000+ views on a 6,000-follower account. Add details about the format and your role.",
+      "A four-episode vertical series built around real member results and stats. It grew entirely through organic reach — 80,000+ views on an account of roughly 6,000 followers — proof of content that performs without paid spend.",
     videoUrl:
       "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/so-well-e4.mp4",
     videoLabel: "Episode 4",
@@ -150,7 +150,7 @@ export const projects: Project[] = [
     orientation: "vertical",
     year: "2026",
     description:
-      "A 6-reel Instagram launch campaign for KNOX Studio — the first Lululemon-powered studio in Poland. Add details about the rollout and results.",
+      "A six-reel Instagram launch campaign for KNOX Studio, the first Lululemon-powered studio in Poland — a coordinated rollout of short-form pieces to introduce the space and its method.",
     videoUrl:
       "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/knox-lululemon-intro.mp4",
     placeholder: false,
@@ -179,7 +179,7 @@ export const projects: Project[] = [
     orientation: "vertical",
     year: "2026",
     description:
-      "Live event coverage, unscripted, shot solo — a talking-head reel with Lululemon's collection rep. Add specifics about the event and turnaround.",
+      "Live, unscripted event coverage shot solo — a talking-head reel with Lululemon's collection rep, captured and turned around fast on location.",
     videoUrl:
       "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/lululemon-reel-1.mp4",
     placeholder: false,
@@ -192,7 +192,8 @@ export const projects: Project[] = [
     group: "Social & Events",
     orientation: "vertical",
     year: "2026",
-    description: "Add details about the brief and the influencer collaboration.",
+    description:
+      "Influencer-led social content for Merrell — a vertical reel pairing the product with an outdoor, active-lifestyle audience.",
     videoUrl:
       "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/merrell-influencer-reel.mp4",
     placeholder: false,
@@ -205,7 +206,8 @@ export const projects: Project[] = [
     group: "Social & Events",
     orientation: "vertical",
     year: "2026",
-    description: "Add details about the brief and the influencer collaboration.",
+    description:
+      "Influencer-led social content for Polish activewear brand Carpatree — a vertical reel made for fast, native performance on Instagram.",
     videoUrl:
       "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/carpatree-influencer-reel.mp4",
     placeholder: false,
@@ -213,14 +215,16 @@ export const projects: Project[] = [
   {
     slug: "hyrox-warsaw-reel",
     title: "Hyrox Warsaw — Athlete Reel",
-    client: "Add athlete/influencer name",
+    client: "Vlad Ovchinnikov",
     category: "Sports Content",
     group: "Social & Events",
     orientation: "vertical",
     year: "2026",
     description:
-      "Hyrox content for a Russian-speaking sports influencer based in Warsaw. Add details about the shoot.",
-    placeholder: true,
+      "A vertical social reel for Warsaw-based Hyrox athlete Vlad Ovchinnikov, cut to carry the pace and intensity of competitive functional-fitness training.",
+    videoUrl:
+      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/hyrox-warsaw-reel.mp4",
+    placeholder: false,
   },
   {
     slug: "porsche-change-studio-reel",
@@ -231,7 +235,7 @@ export const projects: Project[] = [
     orientation: "vertical",
     year: "2026",
     description:
-      "An Instagram reel collaboration between Porsche and Change Studio. Add details about the brief and your role.",
+      "An Instagram reel produced in collaboration with Porsche and Change Studio — a short, high-gloss vertical piece cut for social.",
     videoUrl:
       "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/porsche-change-studio.mp4",
     placeholder: false,

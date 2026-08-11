@@ -23,13 +23,21 @@ export default async function ProjectPage({
   const aspectClass =
     project.orientation === "vertical" ? "aspect-[9/16]" : "aspect-video";
 
-  const hasEpisodes = project.episodes && project.episodes.length > 0;
-
   const heroClip = {
     label: project.videoLabel,
     videoUrl: project.videoUrl,
     placeholder: project.placeholder,
   };
+
+  // Only render clips that actually have video — no empty placeholder slots.
+  const episodeClips = [heroClip, ...(project.episodes ?? [])].filter(
+    (clip) => !clip.placeholder && clip.videoUrl
+  );
+  const hasEpisodes = (project.episodes?.length ?? 0) > 0 && episodeClips.length > 0;
+
+  const secondaryClips = (project.secondaryVideos ?? []).filter(
+    (clip) => !clip.placeholder && clip.videoUrl
+  );
 
   return (
     <div className="flex flex-1 flex-col">
@@ -43,7 +51,7 @@ export default async function ProjectPage({
             ← Back to work
           </Link>
 
-          {!hasEpisodes && (
+          {!hasEpisodes && !project.placeholder && project.videoUrl && (
             <>
               {project.videoLabel && (
                 <p className="mt-8 text-sm text-white/50">
@@ -58,29 +66,18 @@ export default async function ProjectPage({
                   project.orientation === "vertical" ? "mx-auto max-w-sm" : ""
                 } overflow-hidden rounded-lg border border-border bg-surface`}
               >
-                {project.placeholder ? (
-                  <div className="flex h-full flex-col items-center justify-center gap-2 border-2 border-dashed border-white/10 p-4 text-center text-white/30">
-                    <span className="text-xs uppercase tracking-widest">
-                      Video placeholder
-                    </span>
-                    <span className="text-[11px] text-white/20">
-                      Drop a web-optimized mp4 or embed here
-                    </span>
-                  </div>
-                ) : (
-                  <video
-                    src={project.videoUrl}
-                    className="h-full w-full object-cover"
-                    controls
-                  />
-                )}
+                <video
+                  src={project.videoUrl}
+                  className="h-full w-full object-cover"
+                  controls
+                />
               </div>
             </>
           )}
 
           {hasEpisodes && (
             <div className="mt-8 flex gap-6 overflow-x-auto pb-2">
-              {[heroClip, ...project.episodes!].map((clip, index) => (
+              {episodeClips.map((clip, index) => (
                 <div key={clip.label ?? index} className="w-56 flex-shrink-0 sm:w-64">
                   {clip.label && (
                     <p className="mb-4 text-sm text-white/50">{clip.label}</p>
@@ -88,22 +85,11 @@ export default async function ProjectPage({
                   <div
                     className={`relative w-full ${aspectClass} overflow-hidden rounded-lg border border-border bg-surface`}
                   >
-                    {clip.placeholder ? (
-                      <div className="flex h-full flex-col items-center justify-center gap-2 border-2 border-dashed border-white/10 p-4 text-center text-white/30">
-                        <span className="text-xs uppercase tracking-widest">
-                          Video placeholder
-                        </span>
-                        <span className="text-[11px] text-white/20">
-                          Drop a web-optimized mp4 or embed here
-                        </span>
-                      </div>
-                    ) : (
-                      <video
-                        src={clip.videoUrl}
-                        className="h-full w-full object-cover"
-                        controls
-                      />
-                    )}
+                    <video
+                      src={clip.videoUrl}
+                      className="h-full w-full object-cover"
+                      controls
+                    />
                   </div>
                 </div>
               ))}
@@ -135,9 +121,9 @@ export default async function ProjectPage({
             </div>
           )}
 
-          {project.secondaryVideos && project.secondaryVideos.length > 0 && (
+          {secondaryClips.length > 0 && (
             <div className="mt-12 flex flex-col gap-10 border-t border-border pt-10">
-              {project.secondaryVideos.map((secondaryVideo) => (
+              {secondaryClips.map((secondaryVideo) => (
                 <div key={secondaryVideo.label}>
                   <p className="mb-4 text-sm text-white/50">
                     {secondaryVideo.label}
@@ -149,22 +135,11 @@ export default async function ProjectPage({
                         : ""
                     } overflow-hidden rounded-lg border border-border bg-surface`}
                   >
-                    {secondaryVideo.placeholder ? (
-                      <div className="flex h-full flex-col items-center justify-center gap-2 border-2 border-dashed border-white/10 p-4 text-center text-white/30">
-                        <span className="text-xs uppercase tracking-widest">
-                          Video placeholder
-                        </span>
-                        <span className="text-[11px] text-white/20">
-                          Drop a web-optimized mp4 or embed here
-                        </span>
-                      </div>
-                    ) : (
-                      <video
-                        src={secondaryVideo.videoUrl}
-                        className="h-full w-full object-cover"
-                        controls
-                      />
-                    )}
+                    <video
+                      src={secondaryVideo.videoUrl}
+                      className="h-full w-full object-cover"
+                      controls
+                    />
                   </div>
                 </div>
               ))}

@@ -1,5 +1,6 @@
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
+import FeaturedWork from "./components/FeaturedWork";
 import Work from "./components/Work";
 import Brands from "./components/Brands";
 import About from "./components/About";
@@ -11,6 +12,7 @@ export default function Home() {
       <Nav />
       <main className="flex-1">
         <Hero />
+        <FeaturedWork />
         <Work />
         <Brands />
         <About />

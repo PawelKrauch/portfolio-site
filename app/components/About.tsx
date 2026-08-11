@@ -3,7 +3,7 @@ export default function About() {
     <section id="about" className="border-t border-border px-6 py-24 sm:px-10 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 flex items-baseline gap-3">
-          <span className="text-xs font-medium text-accent">03</span>
+          <span className="text-xs font-medium text-accent">04</span>
           <h2 className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
             Info
           </h2>

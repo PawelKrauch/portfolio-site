@@ -6,7 +6,7 @@ export default function Brands() {
     <section className="border-t border-border px-6 py-16 sm:px-10">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 flex items-baseline gap-3">
-          <span className="text-xs font-medium text-accent">02</span>
+          <span className="text-xs font-medium text-accent">03</span>
           <h2 className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
             Brands
           </h2>

@@ -2,24 +2,14 @@ import Link from "next/link";
 import type { Project } from "../data/projects";
 
 export default function ProjectCard({ project }: { project: Project }) {
-  const aspectClass =
-    project.orientation === "vertical" ? "aspect-[9/16]" : "aspect-video";
-
+  // Uniform square tiles keep the grid symmetrical regardless of footage shape
+  // (horizontal vs vertical). The full native aspect shows on the detail page.
   return (
     <Link
       href={`/work/${project.slug}`}
-      className={`group relative block ${aspectClass} overflow-hidden rounded-lg border border-border bg-surface transition-colors hover:border-accent/60`}
+      className="group relative block aspect-square overflow-hidden rounded-lg border border-border bg-surface transition-colors hover:border-accent/60"
     >
-      {project.placeholder ? (
-        <div className="flex h-full flex-col items-center justify-center gap-2 border-2 border-dashed border-white/10 p-4 text-center text-white/30">
-          <span className="text-xs uppercase tracking-widest">
-            Video placeholder
-          </span>
-          <span className="text-[11px] text-white/20">
-            Drop a web-optimized mp4 or embed here
-          </span>
-        </div>
-      ) : (
+      {!project.placeholder && project.videoUrl && (
         <video
           src={project.videoUrl}
           className="h-full w-full object-cover"

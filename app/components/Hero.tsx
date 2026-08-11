@@ -2,111 +2,142 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { projects } from "../data/projects";
 
-const slides = projects.filter((project) => project.featured);
+const BASE = "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com";
+const LOOP_URL = `${BASE}/krauch-showreel-2025-loop.mp4`;
+const FULL_URL = `${BASE}/krauch-showreel-2025.mp4`;
+const POSTER_URL = `${BASE}/krauch-showreel-poster.jpg`;
 
-function tagline(description: string) {
-  return description.split(". ")[0].replace(/\.$/, "") + ".";
-}
+// The reel opens on a baked-in "SHOWREEL / KRAUCH MEDIA 2025" title card
+// (~0–5s). We let that play first, then fade in the headline once it's done so
+// the two never overlap. After the first pass the loop restarts *after* the
+// title card so it never replays behind the headline. The click-to-play modal
+// plays the whole reel (title card + sound) from the start.
+const INTRO_END = 5;
 
 export default function Hero() {
-  const [active, setActive] = useState(0);
-  const [indicatorVisible, setIndicatorVisible] = useState(true);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const bgRef = useRef<HTMLVideoElement>(null);
+  const [open, setOpen] = useState(false);
+  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const index = slideRefs.current.indexOf(entry.target as HTMLDivElement);
-          if (index !== -1) setActive(index);
-        });
-      },
-      { threshold: 0.6 }
-    );
+    const video = bgRef.current;
+    if (!video) return;
 
-    slideRefs.current.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
+    // Reveal the headline once the title card has finished playing.
+    const onTime = () => {
+      if (video.currentTime >= INTRO_END) setRevealed(true);
+    };
+    // On loop, restart after the title card so it doesn't replay behind text.
+    const loopAfterIntro = () => {
+      video.currentTime = INTRO_END;
+      void video.play();
+    };
+
+    video.addEventListener("timeupdate", onTime);
+    video.addEventListener("ended", loopAfterIntro);
+    // Fallback in case timeupdate is throttled before reaching INTRO_END.
+    const fallback = window.setTimeout(() => setRevealed(true), INTRO_END * 1000 + 500);
+    return () => {
+      video.removeEventListener("timeupdate", onTime);
+      video.removeEventListener("ended", loopAfterIntro);
+      window.clearTimeout(fallback);
+    };
   }, []);
 
+  // Pause the background while the full reel modal is open; close on Escape.
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setIndicatorVisible(entry.isIntersecting),
-      { threshold: 0.1 }
-    );
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
+    const bg = bgRef.current;
+    if (open) {
+      bg?.pause();
+      const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+      document.addEventListener("keydown", onKey);
+      return () => document.removeEventListener("keydown", onKey);
+    }
+    void bg?.play();
+  }, [open]);
 
   return (
-    <section ref={sectionRef} className="relative">
-      {slides.map((project, i) => (
-        <div
-          key={project.slug}
-          ref={(el) => {
-            slideRefs.current[i] = el;
-          }}
-          className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-surface"
+    <section className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-black">
+      <video
+        ref={bgRef}
+        src={LOOP_URL}
+        poster={POSTER_URL}
+        className="absolute inset-0 h-full w-full object-cover"
+        autoPlay
+        muted
+        playsInline
+        preload="metadata"
+      />
+      {/* Darkening layer for headline legibility over the footage */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
+
+      <div
+        className={`relative z-10 flex max-w-3xl flex-col items-center gap-5 px-6 text-center transition-all duration-1000 ease-out ${
+          revealed
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-4 opacity-0"
+        }`}
+      >
+        <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/60">
+          Filmmaker &amp; Director
+        </p>
+        <h1 className="text-balance text-5xl font-medium drop-shadow-lg sm:text-7xl">
+          Paweł Krauch
+        </h1>
+        <p className="max-w-md text-balance text-base text-white/80 drop-shadow sm:text-lg">
+          Cinematic brand films, delivered lean.
+        </p>
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="Play showreel with sound"
+          className="mt-2 flex items-center gap-3 rounded-full bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur transition-colors hover:bg-accent"
         >
-          <div
-            className="pointer-events-none absolute inset-0 opacity-30 blur-3xl"
-            style={{
-              background:
-                "radial-gradient(circle at 50% 40%, var(--accent) 0%, transparent 60%)",
-            }}
+          <svg
+            width="14"
+            height="16"
+            viewBox="0 0 14 16"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M0 1.3v13.4a1 1 0 0 0 1.5.87l11.2-6.7a1 1 0 0 0 0-1.74L1.5.43A1 1 0 0 0 0 1.3Z" />
+          </svg>
+          Watch Showreel (2025)
+        </button>
+      </div>
+
+      <Link
+        href="#work"
+        className={`absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-[11px] uppercase tracking-widest text-white/50 transition-opacity duration-1000 hover:text-white ${
+          revealed ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      >
+        Selected Work
+        <span aria-hidden="true">↓</span>
+      </Link>
+
+      {open && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 sm:p-8"
+          onClick={() => setOpen(false)}
+        >
+          <button
+            type="button"
+            aria-label="Close showreel"
+            className="absolute top-5 right-5 text-sm text-white/60 hover:text-white"
+          >
+            Close ✕
+          </button>
+          <video
+            src={FULL_URL}
+            poster={POSTER_URL}
+            className="max-h-full w-full max-w-6xl rounded-lg"
+            controls
+            autoPlay
+            playsInline
+            onClick={(e) => e.stopPropagation()}
           />
-
-          {project.placeholder ? (
-            <span className="pointer-events-none absolute inset-0 flex select-none items-center justify-center text-[20vw] font-medium leading-none text-white/[0.04]">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-          ) : (
-            <video
-              src={project.videoUrl}
-              className="absolute inset-0 h-full w-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
-          )}
-
-          <div className="relative flex max-w-2xl flex-col items-center gap-4 px-6 text-center">
-            {i === 0 && (
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/40">
-                Filmmaker &amp; Director
-              </p>
-            )}
-            <h2 className="text-balance text-2xl font-medium sm:text-4xl">
-              {project.title}
-            </h2>
-            <p className="max-w-md text-balance text-sm text-white/60 sm:text-base">
-              {tagline(project.description)}
-            </p>
-            <Link
-              href={`/work/${project.slug}`}
-              className="mt-2 text-sm underline decoration-white/30 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
-            >
-              View Case Study
-            </Link>
-          </div>
-        </div>
-      ))}
-
-      {indicatorVisible && (
-        <div className="fixed bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/40">
-          <span className="text-[11px] uppercase tracking-widest">
-            Scroll to explore
-          </span>
-          <span className="text-[11px]">
-            {String(active + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
-          </span>
         </div>
       )}
     </section>

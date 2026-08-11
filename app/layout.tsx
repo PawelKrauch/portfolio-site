@@ -12,7 +12,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+// Resolve the canonical site URL defensively: accept a bare hostname (prepend
+// https://), and fall back to localhost if the env var is missing or unparseable
+// — a malformed NEXT_PUBLIC_SITE_URL must never crash the production build.
+function resolveSiteUrl(): string {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!raw) return "http://localhost:3000";
+  const candidate = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+  try {
+    return new URL(candidate).toString();
+  } catch {
+    return "http://localhost:3000";
+  }
+}
+
+const siteUrl = resolveSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
