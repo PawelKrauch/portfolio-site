@@ -174,6 +174,10 @@ export const projects: Project[] = [
         src: "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/bts/so-well-gym-series/05.jpg",
         alt: "SO Well Gym — behind the scenes",
       },
+      {
+        src: "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/bts/so-well-gym-series/06.jpg",
+        alt: "SO Well Gym — behind the scenes",
+      },
     ],
   },
   {
