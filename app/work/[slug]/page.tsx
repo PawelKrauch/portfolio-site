@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { projects } from "../../data/projects";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
+import Gallery from "../../components/Gallery";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -144,6 +145,14 @@ export default async function ProjectPage({
                 </div>
               ))}
             </div>
+          )}
+
+          {project.stills && (
+            <Gallery label="Stills" images={project.stills} />
+          )}
+
+          {project.bts && (
+            <Gallery label="Behind the Scenes" images={project.bts} />
           )}
         </div>
       </main>

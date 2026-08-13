@@ -12,6 +12,13 @@ export type Stat = {
   label: string;
 };
 
+export type GalleryImage = {
+  // Full URL (Blob) or /public-relative path to the image.
+  src: string;
+  // Optional descriptive alt text; falls back to a generic label if omitted.
+  alt?: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -31,6 +38,12 @@ export type Project = {
   // list of full clips below the hero video, in array order.
   episodes?: SecondaryVideo[];
   stats?: Stat[];
+  // Optional photo galleries rendered at the bottom of the detail page.
+  // `stills` = polished production/photography frames; `bts` = behind-the-scenes.
+  // A project can have either, both, or neither — an empty/absent array renders
+  // nothing, so pick per project based on the materials that actually exist.
+  stills?: GalleryImage[];
+  bts?: GalleryImage[];
   // Shown as full-bleed slides in the homepage Hero slideshow, in array order.
   featured?: boolean;
 };
@@ -138,6 +151,28 @@ export const projects: Project[] = [
       {
         label: "Behind the Scenes — shot & edited solo",
         placeholder: true,
+      },
+    ],
+    bts: [
+      {
+        src: "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/bts/so-well-gym-series/01.jpg",
+        alt: "SO Well Gym — behind the scenes",
+      },
+      {
+        src: "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/bts/so-well-gym-series/02.jpg",
+        alt: "SO Well Gym — behind the scenes",
+      },
+      {
+        src: "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/bts/so-well-gym-series/03.jpg",
+        alt: "SO Well Gym — behind the scenes",
+      },
+      {
+        src: "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/bts/so-well-gym-series/04.jpg",
+        alt: "SO Well Gym — behind the scenes",
+      },
+      {
+        src: "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/bts/so-well-gym-series/05.jpg",
+        alt: "SO Well Gym — behind the scenes",
       },
     ],
   },
