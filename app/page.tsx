@@ -4,6 +4,7 @@ import FeaturedWork from "./components/FeaturedWork";
 import Work from "./components/Work";
 import Brands from "./components/Brands";
 import About from "./components/About";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <Work />
         <Brands />
         <About />
+        <Contact />
       </main>
       <Footer />
     </div>
