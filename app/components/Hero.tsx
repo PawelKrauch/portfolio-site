@@ -8,32 +8,60 @@ const LOOP_URL = `${BASE}/krauch-showreel-2025-loop.mp4`;
 const FULL_URL = `${BASE}/krauch-showreel-2025.mp4`;
 const POSTER_URL = `${BASE}/krauch-showreel-poster.jpg`;
 
-// The reel opens on a baked-in "SHOWREEL / KRAUCH MEDIA 2025" title card
-// (~0–5s). We let that play first, then fade in the headline once it's done so
-// the two never overlap. After the first pass the loop restarts *after* the
-// title card so it never replays behind the headline. The click-to-play modal
-// plays the whole reel (title card + sound) from the start.
+// Shorter vertical cut used as the background reel below the `sm` breakpoint
+// only — chosen via a <source media> query so mobile never also downloads the
+// 16:9 loop. It has no title card (straight to content), so it skips the
+// intro-reveal choreography below entirely.
+const MOBILE_LOOP_URL = `${BASE}/krauch-showreel-2025-9x16-loop.mp4`;
+const MOBILE_POSTER_URL = `${BASE}/krauch-showreel-2025-9x16-poster.jpg`;
+const MOBILE_BREAKPOINT = "(max-width: 639px)";
+
+// The desktop reel opens on a baked-in "SHOWREEL / KRAUCH MEDIA 2025" title
+// card (~0–5s). We let that play first, then fade in the headline once it's
+// done so the two never overlap. After the first pass the loop restarts
+// *after* the title card so it never replays behind the headline. The
+// click-to-play modal plays the whole reel (title card + sound) from the start.
 const INTRO_END = 5;
 
 export default function Hero() {
   const bgRef = useRef<HTMLVideoElement>(null);
   const [open, setOpen] = useState(false);
   const [revealed, setRevealed] = useState(false);
+  const [posterUrl, setPosterUrl] = useState(POSTER_URL);
+
+  // The <source media> below picks the file; this only picks which poster
+  // matches it (poster can't be set per-<source>).
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_BREAKPOINT);
+    const update = () => setPosterUrl(mq.matches ? MOBILE_POSTER_URL : POSTER_URL);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const video = bgRef.current;
     if (!video) return;
 
+    // Only the desktop 16:9 loop has a title card to skip past.
+    let hasTitleCard = false;
+    const onLoadedMetadata = () => {
+      hasTitleCard = video.currentSrc === LOOP_URL;
+      if (!hasTitleCard) setRevealed(true);
+    };
+
     // Reveal the headline once the title card has finished playing.
     const onTime = () => {
-      if (video.currentTime >= INTRO_END) setRevealed(true);
+      if (hasTitleCard && video.currentTime >= INTRO_END) setRevealed(true);
     };
-    // On loop, restart after the title card so it doesn't replay behind text.
+    // On loop, restart after the title card so it doesn't replay behind text
+    // (mobile has no title card, so it just restarts from the top).
     const loopAfterIntro = () => {
-      video.currentTime = INTRO_END;
+      video.currentTime = hasTitleCard ? INTRO_END : 0;
       void video.play();
     };
 
+    video.addEventListener("loadedmetadata", onLoadedMetadata);
     video.addEventListener("timeupdate", onTime);
     video.addEventListener("ended", loopAfterIntro);
     // Fallback in case timeupdate is throttled before reaching INTRO_END.
@@ -54,6 +82,7 @@ export default function Hero() {
     window.addEventListener("pointerdown", onFirstInteract, gestureOpts);
 
     return () => {
+      video.removeEventListener("loadedmetadata", onLoadedMetadata);
       video.removeEventListener("timeupdate", onTime);
       video.removeEventListener("ended", loopAfterIntro);
       window.clearTimeout(fallback);
@@ -78,14 +107,16 @@ export default function Hero() {
     <section className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-black">
       <video
         ref={bgRef}
-        src={LOOP_URL}
-        poster={POSTER_URL}
+        poster={posterUrl}
         className="absolute inset-0 h-full w-full object-cover"
         autoPlay
         muted
         playsInline
         preload="metadata"
-      />
+      >
+        <source src={MOBILE_LOOP_URL} media={MOBILE_BREAKPOINT} type="video/mp4" />
+        <source src={LOOP_URL} type="video/mp4" />
+      </video>
       {/* Darkening layer for headline legibility over the footage */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
 
