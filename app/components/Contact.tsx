@@ -7,9 +7,9 @@ import { trackLead } from "../lib/pixel";
 const initialContactState: ContactState = { status: "idle", message: "" };
 
 const BUDGET_OPTIONS: { value: string; label: string }[] = [
-  { value: "<2k", label: "Under 2,000 zł" },
-  { value: "2-10k", label: "2,000–10,000 zł" },
-  { value: ">10k", label: "10,000 zł+" },
+  { value: "<5k", label: "Under 5,000 zł" },
+  { value: "5-15k", label: "5,000–15,000 zł" },
+  { value: ">15k", label: "15,000 zł+" },
 ];
 
 const inputClass =

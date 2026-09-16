@@ -15,9 +15,9 @@ export type ContactState = {
 // Labels for the optional budget-qualifier field — kept next to the field
 // definition so the select options and the emailed label can't drift apart.
 const BUDGET_LABELS: Record<string, string> = {
-  "<2k": "Under 2,000 zł",
-  "2-10k": "2,000–10,000 zł",
-  ">10k": "10,000 zł+",
+  "<5k": "Under 5,000 zł",
+  "5-15k": "5,000–15,000 zł",
+  ">15k": "15,000 zł+",
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
