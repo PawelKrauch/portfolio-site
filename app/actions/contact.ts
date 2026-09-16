@@ -8,8 +8,16 @@ export type ContactState = {
   status: "idle" | "success" | "error";
   message: string;
   // Echoed back on error so the visitor doesn't have to retype everything.
-  values?: { name: string; email: string; message: string };
+  values?: { name: string; email: string; message: string; budget?: string };
   fieldErrors?: { name?: string; email?: string; message?: string };
+};
+
+// Labels for the optional budget-qualifier field — kept next to the field
+// definition so the select options and the emailed label can't drift apart.
+const BUDGET_LABELS: Record<string, string> = {
+  "<2k": "Under 2,000 zł",
+  "2-10k": "2,000–10,000 zł",
+  ">10k": "10,000 zł+",
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -28,6 +36,9 @@ export async function submitContact(
   const name = ((formData.get("name") as string) ?? "").trim();
   const email = ((formData.get("email") as string) ?? "").trim();
   const message = ((formData.get("message") as string) ?? "").trim();
+  // Optional — never blocks submission even if skipped or tampered with.
+  const budgetRaw = ((formData.get("budget") as string) ?? "").trim();
+  const budget = budgetRaw in BUDGET_LABELS ? budgetRaw : undefined;
 
   const fieldErrors: NonNullable<ContactState["fieldErrors"]> = {};
   if (name.length < 2) fieldErrors.name = "Please enter your name.";
@@ -38,7 +49,7 @@ export async function submitContact(
     return {
       status: "error",
       message: "Please fix the highlighted fields.",
-      values: { name, email, message },
+      values: { name, email, message, budget },
       fieldErrors,
     };
   }
@@ -51,7 +62,7 @@ export async function submitContact(
       status: "error",
       message:
         "Something went wrong on my end. Please email me directly at pavelkrauch@gmail.com.",
-      values: { name, email, message },
+      values: { name, email, message, budget },
     };
   }
 
@@ -73,7 +84,9 @@ export async function submitContact(
         to,
         reply_to: email,
         subject: `New project inquiry — ${name}`,
-        text: `New inquiry from the portfolio site.\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+        text: `New inquiry from the portfolio site.\n\nName: ${name}\nEmail: ${email}${
+          budget ? `\nBudget: ${BUDGET_LABELS[budget]}` : ""
+        }\n\nMessage:\n${message}`,
       }),
     });
 
@@ -84,7 +97,7 @@ export async function submitContact(
         status: "error",
         message:
           "Couldn't send right now. Please try again, or email me directly at pavelkrauch@gmail.com.",
-        values: { name, email, message },
+        values: { name, email, message, budget },
       };
     }
   } catch (err) {
@@ -93,7 +106,7 @@ export async function submitContact(
       status: "error",
       message:
         "Couldn't send right now. Please try again, or email me directly at pavelkrauch@gmail.com.",
-      values: { name, email, message },
+      values: { name, email, message, budget },
     };
   }
 

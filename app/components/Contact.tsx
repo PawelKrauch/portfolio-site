@@ -1,9 +1,16 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { submitContact, type ContactState } from "../actions/contact";
+import { trackLead } from "../lib/pixel";
 
 const initialContactState: ContactState = { status: "idle", message: "" };
+
+const BUDGET_OPTIONS: { value: string; label: string }[] = [
+  { value: "<2k", label: "Under 2,000 zł" },
+  { value: "2-10k", label: "2,000–10,000 zł" },
+  { value: ">10k", label: "10,000 zł+" },
+];
 
 const inputClass =
   "w-full rounded-lg border border-border bg-surface px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-white/30 focus:border-accent";
@@ -16,6 +23,13 @@ export default function Contact() {
 
   const values = state.values;
   const errors = state.fieldErrors;
+
+  // Fire once per successful submission — Meta Pixel's Lead conversion event,
+  // used to optimize/measure ad delivery. No-ops safely if the Pixel hasn't
+  // loaded (no ID configured yet, or the visitor declined cookie consent).
+  useEffect(() => {
+    if (state.status === "success") trackLead();
+  }, [state.status]);
 
   return (
     <section
@@ -110,6 +124,26 @@ export default function Contact() {
                 {errors?.email && (
                   <p className="text-xs text-red-400">{errors.email}</p>
                 )}
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label htmlFor="budget" className="text-xs text-white/50">
+                  Project budget{" "}
+                  <span className="text-white/30">(optional)</span>
+                </label>
+                <select
+                  id="budget"
+                  name="budget"
+                  defaultValue={values?.budget ?? ""}
+                  className={`${inputClass} appearance-none`}
+                >
+                  <option value="">Prefer not to say</option>
+                  {BUDGET_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div className="flex flex-col gap-2">
