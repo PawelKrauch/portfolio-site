@@ -121,27 +121,30 @@ export default function Hero() {
       {/* Darkening layer for headline legibility over the footage */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
 
-      <div
-        className={`relative z-10 flex max-w-3xl flex-col items-center gap-5 px-6 text-center transition-all duration-1000 ease-out ${
-          revealed
-            ? "translate-y-0 opacity-100"
-            : "pointer-events-none translate-y-4 opacity-0"
-        }`}
-      >
-        <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/60">
-          Filmmaker &amp; Director
-        </p>
-        <h1 className="text-balance text-5xl font-medium drop-shadow-lg sm:text-7xl">
-          Paweł Krauch
-        </h1>
-        <p className="max-w-md text-balance text-base text-white/80 drop-shadow sm:text-lg">
-          Cinematic brand films, delivered lean.
-        </p>
-        <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row">
+      <div className="relative z-10 flex max-w-3xl flex-col items-center gap-7 px-6 text-center">
+        {/* Headline waits for the title card; the CTAs below never do. */}
+        <div
+          className={`flex flex-col items-center gap-5 transition-all duration-1000 ease-out ${
+            revealed
+              ? "translate-y-0 opacity-100"
+              : "pointer-events-none translate-y-4 opacity-0"
+          }`}
+        >
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/60">
+            Filmmaker &amp; Director
+          </p>
+          <h1 className="text-balance text-5xl font-medium drop-shadow-lg sm:text-7xl">
+            Paweł Krauch
+          </h1>
+          <p className="max-w-md text-balance text-base text-white/80 drop-shadow sm:text-lg">
+            Cinematic brand films, delivered lean.
+          </p>
+        </div>
+        <div className="flex flex-col items-center gap-4 sm:flex-row">
           <Link
             href="/#contact"
             onClick={(e) => scrollToSection(e, "contact")}
-            className="rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/30 transition-transform hover:scale-105"
+            className="rounded-full bg-white px-9 py-4 text-base font-semibold text-black shadow-xl shadow-black/40 transition-all hover:scale-105 hover:bg-accent hover:text-white"
           >
             Start a project →
           </Link>
