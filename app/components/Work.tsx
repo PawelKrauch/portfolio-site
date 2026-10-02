@@ -3,9 +3,15 @@ import Reveal from "./Reveal";
 import ProjectCard from "./ProjectCard";
 import SectionHeading from "./SectionHeading";
 
-const groups: { name: ProjectGroup; gridClass: string }[] = [
+const groups: { name: ProjectGroup; gridClass: string; intro?: string }[] = [
   { name: "Brand Films", gridClass: "grid-cols-1 sm:grid-cols-2" },
   { name: "Social & Events", gridClass: "grid-cols-2 sm:grid-cols-3" },
+  {
+    name: "Private Commissions",
+    gridClass: "grid-cols-2 sm:grid-cols-3",
+    intro:
+      "Brand-level films for individuals — your sport, travel or lifestyle, shot and edited for your own channels.",
+  },
 ];
 
 export default function Work() {
@@ -15,7 +21,7 @@ export default function Work() {
         <SectionHeading index="02" title="Selected Work" />
 
         <div className="flex flex-col gap-16">
-          {groups.map(({ name, gridClass }) => {
+          {groups.map(({ name, gridClass, intro }) => {
             // Featured pieces get their own big cards up top — keep the grid to
             // the rest of the catalog so nothing shows twice.
             const groupProjects = projects.filter(
@@ -26,6 +32,9 @@ export default function Work() {
             return (
               <div key={name}>
                 <h3 className="mb-8 text-[11px] font-medium uppercase tracking-[0.3em] text-white/45">{name}</h3>
+                {intro && (
+                  <p className="-mt-4 mb-8 max-w-xl font-serif text-xl italic text-white/65">{intro}</p>
+                )}
                 <div className={`grid gap-x-6 gap-y-12 ${gridClass}`}>
                   {groupProjects.map((project, i) => (
                     <Reveal key={project.slug} delay={i * 80}>

@@ -18,7 +18,8 @@ export default function About() {
             </p>
             <p>
               Available for commercial, branded content, and campaign work
-              worldwide.
+              worldwide — and for private commissions: personal lifestyle
+              films made to the same standard.
             </p>
           </div>
           <div className="flex flex-col gap-2 text-[11px] uppercase tracking-[0.25em]">
