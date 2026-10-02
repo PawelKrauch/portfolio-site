@@ -12,6 +12,7 @@ export type Client = {
 export const clients: Client[] = [
   { name: "Porsche", placeholder: false },
   { name: "Adidas", placeholder: false },
+  { name: "Zalando", placeholder: false },
   { name: "Lululemon", placeholder: false },
   { name: "Purely Athletics", placeholder: false },
   { name: "SO Well Gym", placeholder: false },
