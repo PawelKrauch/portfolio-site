@@ -224,6 +224,21 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "janek-zalando-influencer-reel",
+    poster: "/posters/janek-zalando-influencer-reel.jpg",
+    title: "Janek × Zalando — Influencer Content",
+    client: "Zalando",
+    category: "Influencer Content",
+    group: "Social & Events",
+    orientation: "vertical",
+    year: "2026",
+    description:
+      "Summer-in-the-city styling story for Zalando with creator Janek — \"Every summer has a story\" — shot and cut as a fast vertical reel for Instagram.",
+    videoUrl:
+      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/janek-zalando-influencer-reel.mp4",
+    placeholder: false,
+  },
+  {
     slug: "lululemon-event-reel",
     poster: "/posters/lululemon-event-reel.jpg",
     title: "Lululemon — Collection Event",
