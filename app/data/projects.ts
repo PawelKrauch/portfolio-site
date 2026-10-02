@@ -36,6 +36,9 @@ export type Project = {
   // Still frame (/public path) shown on tiles and players before the video
   // loads, so cards never render as empty dark boxes.
   poster?: string;
+  // Optional tile-only image (/public path), already cropped for the homepage
+  // grid — use when the centre crop of `poster` frames the shot badly.
+  cover?: string;
   // Short, small, muted loop (/public path) for the autoplaying homepage
   // tiles, so they don't stream the full-length master just to preview it.
   previewUrl?: string;
@@ -226,6 +229,7 @@ export const projects: Project[] = [
   {
     slug: "janek-zalando-influencer-reel",
     poster: "/posters/janek-zalando-influencer-reel.jpg",
+    cover: "/covers/janek-zalando-influencer-reel.jpg",
     title: "Janek × Zalando — Influencer Content",
     client: "Zalando",
     category: "Influencer Content",

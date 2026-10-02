@@ -12,7 +12,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       {!project.placeholder && project.videoUrl && (
         <video
           src={project.videoUrl}
-          poster={project.poster}
+          poster={project.cover ?? project.poster}
           className="h-full w-full object-cover"
           muted
           loop

@@ -48,7 +48,7 @@ function FeaturedCard({ project }: { project: Project }) {
         <video
           ref={videoRef}
           src={project.previewUrl ?? project.videoUrl}
-          poster={project.poster}
+          poster={project.cover ?? project.poster}
           className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           muted
           loop
