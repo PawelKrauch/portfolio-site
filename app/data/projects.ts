@@ -322,6 +322,7 @@ export const projects: Project[] = [
   {
     slug: "padel-private-lifestyle-shoot",
     poster: "/posters/padel-private-lifestyle-shoot.jpg",
+    cover: "/covers/padel-private-lifestyle-shoot.jpg",
     title: "Padel — Lifestyle Reel",
     client: "Personal project",
     category: "Personal Project",
