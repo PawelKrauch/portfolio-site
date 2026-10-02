@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { projects, type Project } from "../data/projects";
 import Reveal from "./Reveal";
+import SectionHeading from "./SectionHeading";
 
 // Big "hero" cards for the flagged featured pieces — each its own animated
 // screen that clicks through to the full detail page (data + videos). Sits
@@ -42,7 +43,7 @@ function FeaturedCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="group relative block aspect-square overflow-hidden rounded-lg border border-border bg-surface transition-colors hover:border-accent/60"
+      className="group relative block aspect-[4/5] overflow-hidden bg-surface"
     >
       {project.videoUrl && (
         <video
@@ -57,18 +58,18 @@ function FeaturedCard({ project }: { project: Project }) {
         />
       )}
       <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/10 to-black/0 p-5 sm:p-6">
-        <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
+        <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-white/60">
           {project.category}
         </p>
-        <p className="mt-2 text-lg font-medium sm:text-xl">{project.title}</p>
-        <p className="mt-1 text-xs text-white/60">
+        <p className="mt-3 font-serif text-3xl leading-tight sm:text-4xl">{project.title}</p>
+        <p className="mt-2 text-[11px] uppercase tracking-[0.25em] text-white/50">
           {project.client} · {project.year}
         </p>
         {project.stats && (
           <div className="mt-4 hidden gap-8 sm:flex">
             {project.stats.map((stat) => (
               <div key={stat.label}>
-                <p className="text-lg font-semibold text-white">{stat.value}</p>
+                <p className="font-serif text-3xl text-white">{stat.value}</p>
                 <p className="text-[11px] text-white/50">{stat.label}</p>
               </div>
             ))}
@@ -86,14 +87,9 @@ export default function FeaturedWork() {
   return (
     <section id="featured" className="px-6 py-16 sm:px-10">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-12 flex items-baseline gap-3">
-          <span className="text-xs font-medium text-accent">01</span>
-          <h2 className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
-            Featured
-          </h2>
-        </div>
+        <SectionHeading index="01" title="Featured" />
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2">
           {featured.map((project, i) => (
             <Reveal key={project.slug} delay={i * 80}>
               <FeaturedCard project={project} />

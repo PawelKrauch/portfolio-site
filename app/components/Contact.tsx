@@ -13,7 +13,7 @@ const BUDGET_OPTIONS: { value: string; label: string }[] = [
 ];
 
 const inputClass =
-  "w-full rounded-lg border border-border bg-surface px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-white/30 focus:border-accent";
+  "w-full border-0 border-b border-white/20 bg-transparent px-0 py-3 text-base text-foreground outline-none transition-colors placeholder:text-white/25 focus:border-white [&>option]:bg-background";
 
 export default function Contact() {
   const [state, formAction, pending] = useActionState(
@@ -37,17 +37,14 @@ export default function Contact() {
       className="border-t border-border px-6 py-24 sm:px-10 sm:py-32"
     >
       <div className="mx-auto max-w-6xl">
-        <div className="mb-12 flex items-baseline gap-3">
-          <span className="text-xs font-medium text-accent">05</span>
-          <h2 className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
-            Contact
-          </h2>
-        </div>
+        <p className="mb-10 text-[11px] font-medium tracking-[0.3em] text-white/40">
+          (05) CONTACT
+        </p>
 
         <div className="grid gap-12 md:grid-cols-2">
           <div className="flex max-w-md flex-col gap-6">
-            <h3 className="text-5xl font-medium tracking-tight sm:text-6xl">
-              Let&apos;s make something.
+            <h3 className="font-serif text-6xl leading-[0.95] tracking-tight sm:text-7xl">
+              Let&apos;s make <em>something.</em>
             </h3>
             <p className="text-lg text-white/70">
               Tell me about your project — brand film, campaign, social, or an
@@ -56,15 +53,15 @@ export default function Contact() {
             </p>
             <a
               href="mailto:pavelkrauch@gmail.com"
-              className="text-sm text-white/50 underline underline-offset-4 hover:text-accent"
+              className="text-sm text-white/50 underline underline-offset-4 hover:text-white"
             >
               Or email me directly
             </a>
           </div>
 
           {state.status === "success" ? (
-            <div className="flex flex-col justify-center rounded-lg border border-accent/40 bg-surface p-8">
-              <p className="text-lg font-medium text-foreground">
+            <div className="flex flex-col justify-center border border-white/20 p-8">
+              <p className="font-serif text-3xl text-foreground">
                 Message sent.
               </p>
               <p className="mt-2 text-sm text-white/70" aria-live="polite">
@@ -89,7 +86,7 @@ export default function Contact() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-xs text-white/50">
+                <label htmlFor="name" className="text-[11px] uppercase tracking-[0.25em] text-white/45">
                   Name
                 </label>
                 <input
@@ -108,7 +105,7 @@ export default function Contact() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-xs text-white/50">
+                <label htmlFor="email" className="text-[11px] uppercase tracking-[0.25em] text-white/45">
                   Email
                 </label>
                 <input
@@ -127,7 +124,7 @@ export default function Contact() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="budget" className="text-xs text-white/50">
+                <label htmlFor="budget" className="text-[11px] uppercase tracking-[0.25em] text-white/45">
                   Project budget{" "}
                   <span className="text-white/30">(optional)</span>
                 </label>
@@ -147,7 +144,7 @@ export default function Contact() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="text-xs text-white/50">
+                <label htmlFor="message" className="text-[11px] uppercase tracking-[0.25em] text-white/45">
                   Message
                 </label>
                 <textarea
@@ -173,7 +170,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={pending}
-                className="mt-1 bg-white px-6 py-4 text-xs font-medium uppercase tracking-[0.3em] text-black transition-colors hover:bg-accent hover:text-white disabled:opacity-60"
+                className="mt-1 bg-white px-6 py-4 text-xs font-medium uppercase tracking-[0.3em] text-black transition-colors hover:bg-transparent hover:text-white hover:outline hover:outline-1 hover:outline-white disabled:opacity-60"
               >
                 {pending ? "Sending…" : "Send message"}
               </button>

@@ -130,13 +130,13 @@ export default function Hero() {
               : "pointer-events-none translate-y-4 opacity-0"
           }`}
         >
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/60">
+          <p className="text-[11px] font-medium uppercase tracking-[0.4em] text-white/60">
             Filmmaker &amp; Director
           </p>
-          <h1 className="text-balance text-5xl font-medium drop-shadow-lg sm:text-7xl">
+          <h1 className="text-balance font-serif text-6xl leading-[0.95] tracking-tight drop-shadow-lg sm:text-9xl">
             Paweł Krauch
           </h1>
-          <p className="max-w-md text-balance text-base text-white/80 drop-shadow sm:text-lg">
+          <p className="max-w-md text-balance font-serif text-xl italic text-white/80 drop-shadow sm:text-2xl">
             Cinematic brand films, delivered lean.
           </p>
         </div>
@@ -193,7 +193,7 @@ export default function Hero() {
           <video
             src={FULL_URL}
             poster={POSTER_URL}
-            className="max-h-full w-full max-w-6xl rounded-lg"
+            className="max-h-full w-full max-w-6xl"
             controls
             autoPlay
             playsInline

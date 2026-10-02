@@ -47,7 +47,7 @@ export default async function ProjectPage({
         <div className="mx-auto max-w-4xl">
           <Link
             href="/#work"
-            className="text-sm text-white/50 hover:text-accent"
+            className="text-[11px] uppercase tracking-[0.25em] text-white/50 hover:text-white"
           >
             ← Back to work
           </Link>
@@ -65,7 +65,7 @@ export default async function ProjectPage({
                   project.videoLabel ? "mt-4" : "mt-8"
                 } ${aspectClass} ${
                   project.orientation === "vertical" ? "mx-auto max-w-sm" : ""
-                } overflow-hidden rounded-lg border border-border bg-surface`}
+                } overflow-hidden bg-black`}
               >
                 <video
                   src={project.videoUrl}
@@ -87,7 +87,7 @@ export default async function ProjectPage({
                     <p className="mb-4 text-sm text-white/50">{clip.label}</p>
                   )}
                   <div
-                    className={`relative w-full ${aspectClass} overflow-hidden rounded-lg border border-border bg-surface`}
+                    className={`relative w-full ${aspectClass} overflow-hidden bg-black`}
                   >
                     <video
                       src={clip.videoUrl}
@@ -100,11 +100,11 @@ export default async function ProjectPage({
             </div>
           )}
 
-          <div className="mt-8 flex flex-col gap-3">
-            <h1 className="text-2xl font-semibold sm:text-3xl">
+          <div className="mt-12 flex flex-col gap-4">
+            <h1 className="font-serif text-5xl leading-none tracking-tight sm:text-7xl">
               {project.title}
             </h1>
-            <p className="text-sm text-white/50">
+            <p className="text-[11px] uppercase tracking-[0.25em] text-white/50">
               {project.client} · {project.category} · {project.year}
             </p>
             <p className="mt-4 max-w-2xl text-lg text-white/70">
@@ -116,7 +116,7 @@ export default async function ProjectPage({
             <div className="mt-10 grid grid-cols-3 gap-6 border-t border-border pt-8">
               {project.stats.map((stat) => (
                 <div key={stat.label}>
-                  <p className="text-2xl font-semibold text-accent sm:text-3xl">
+                  <p className="font-serif text-4xl text-white sm:text-5xl">
                     {stat.value}
                   </p>
                   <p className="mt-1 text-xs text-white/50">{stat.label}</p>
@@ -137,7 +137,7 @@ export default async function ProjectPage({
                       project.orientation === "vertical"
                         ? "mx-auto max-w-sm"
                         : ""
-                    } overflow-hidden rounded-lg border border-border bg-surface`}
+                    } overflow-hidden bg-black`}
                   >
                     <video
                       src={secondaryVideo.videoUrl}
@@ -165,7 +165,7 @@ export default async function ProjectPage({
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/40">
               Have a project in mind?
             </p>
-            <p className="mt-4 text-4xl font-medium tracking-tight sm:text-6xl">
+            <p className="mt-4 font-serif text-5xl tracking-tight sm:text-7xl">
               Let&apos;s make it{" "}
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">
                 →

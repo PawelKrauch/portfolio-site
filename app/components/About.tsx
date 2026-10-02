@@ -1,15 +1,12 @@
+import SectionHeading from "./SectionHeading";
+
 export default function About() {
   return (
     <section id="about" className="border-t border-border px-6 py-24 sm:px-10 sm:py-32">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-12 flex items-baseline gap-3">
-          <span className="text-xs font-medium text-accent">04</span>
-          <h2 className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
-            Info
-          </h2>
-        </div>
+        <SectionHeading index="04" title="Info" />
         <div className="flex flex-col gap-10">
-          <div className="flex max-w-2xl flex-col gap-6 text-lg text-white/70">
+          <div className="flex max-w-3xl flex-col gap-8 font-serif text-2xl leading-snug text-white/85 sm:text-3xl">
             <p>
               I&apos;m a freelance filmmaker and director working with brands
               and agencies on commercial and branded content. I lean on AI
@@ -24,10 +21,10 @@ export default function About() {
               worldwide.
             </p>
           </div>
-          <div className="flex flex-col gap-2 text-sm">
+          <div className="flex flex-col gap-2 text-[11px] uppercase tracking-[0.25em]">
             <a
               href="mailto:pavelkrauch@gmail.com"
-              className="text-accent underline underline-offset-4 hover:text-white"
+              className="text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
             >
               pavelkrauch@gmail.com
             </a>

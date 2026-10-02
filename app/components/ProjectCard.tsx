@@ -2,30 +2,27 @@ import Link from "next/link";
 import type { Project } from "../data/projects";
 
 export default function ProjectCard({ project }: { project: Project }) {
-  // Uniform square tiles keep the grid symmetrical regardless of footage shape
+  // Uniform 4:5 portrait tiles keep the grid symmetrical regardless of footage shape
   // (horizontal vs vertical). The full native aspect shows on the detail page.
   return (
-    <Link
-      href={`/work/${project.slug}`}
-      className="group relative block aspect-square overflow-hidden rounded-lg border border-border bg-surface transition-colors hover:border-accent/60"
-    >
-      {!project.placeholder && project.videoUrl && (
-        <video
-          src={project.videoUrl}
-          poster={project.poster}
-          className="h-full w-full object-cover"
-          muted
-          loop
-          playsInline
-          preload={project.poster ? "none" : "metadata"}
-        />
-      )}
-      <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/0 to-black/0 p-5 opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
-        <p className="text-sm font-medium">{project.title}</p>
-        <p className="text-xs text-white/60">
-          {project.client} · {project.category} · {project.year}
-        </p>
+    <Link href={`/work/${project.slug}`} className="group block">
+      <div className="relative aspect-[4/5] overflow-hidden bg-surface">
+        {!project.placeholder && project.videoUrl && (
+          <video
+            src={project.videoUrl}
+            poster={project.poster}
+            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            muted
+            loop
+            playsInline
+            preload={project.poster ? "none" : "metadata"}
+          />
+        )}
       </div>
+      <p className="mt-4 font-serif text-2xl leading-tight">{project.title}</p>
+      <p className="mt-1 text-[11px] uppercase tracking-[0.25em] text-white/45">
+        {project.category} · {project.year}
+      </p>
     </Link>
   );
 }

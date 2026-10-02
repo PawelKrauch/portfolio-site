@@ -17,7 +17,7 @@ export default function Gallery({
 
   return (
     <section className="mt-12 border-t border-border pt-10">
-      <p className="mb-5 text-xs uppercase tracking-widest text-white/50">
+      <p className="mb-5 text-[11px] uppercase tracking-[0.3em] text-white/50">
         {label}
       </p>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -27,7 +27,7 @@ export default function Gallery({
             href={image.src}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative block aspect-square overflow-hidden rounded-lg border border-border bg-surface transition-colors hover:border-accent/60"
+            className="group relative block aspect-square overflow-hidden bg-surface"
           >
             {/* Plain <img> to match the codebase (no next/image); lazy-loaded so
                 galleries don't block the hero video or page paint. */}

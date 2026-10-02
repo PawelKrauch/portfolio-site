@@ -17,21 +17,21 @@ export function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, id: stri
 export default function Nav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between border-b border-border bg-background/70 px-6 py-5 backdrop-blur sm:px-10">
-      <Link href="/" className="text-sm">
+      <Link href="/" className="font-serif text-xl leading-none">
         Paweł Krauch
       </Link>
-      <nav className="flex items-center gap-4 text-sm text-white/70 sm:gap-5">
+      <nav className="flex items-center gap-5 text-[11px] font-medium uppercase tracking-[0.25em] text-white/60 sm:gap-8">
         <Link
           href="/#featured"
           onClick={(e) => scrollToSection(e, "featured")}
-          className="transition-colors hover:text-accent"
+          className="transition-colors hover:text-white"
         >
           Work
         </Link>
         <Link
           href="/#about"
           onClick={(e) => scrollToSection(e, "about")}
-          className="transition-colors hover:text-accent"
+          className="transition-colors hover:text-white"
         >
           Info
         </Link>
