@@ -33,6 +33,12 @@ export type Project = {
   // is one entry in a numbered series (e.g. "Episode 4") alongside `episodes`.
   videoLabel?: string;
   placeholder: boolean;
+  // Still frame (/public path) shown on tiles and players before the video
+  // loads, so cards never render as empty dark boxes.
+  poster?: string;
+  // Short, small, muted loop (/public path) for the autoplaying homepage
+  // tiles, so they don't stream the full-length master just to preview it.
+  previewUrl?: string;
   secondaryVideos?: SecondaryVideo[];
   // Multi-episode series (e.g. a numbered vertical series) — rendered as a
   // list of full clips below the hero video, in array order.
@@ -60,6 +66,8 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "purely-athletics-adidas-documentary",
+    poster: "/posters/purely-athletics-adidas-documentary.jpg",
+    previewUrl: "/previews/purely-athletics-adidas-documentary.mp4",
     title: "Purely Athletics × Adidas — Documentary",
     client: "Purely Athletics / Adidas",
     category: "Documentary",
@@ -81,6 +89,7 @@ export const projects: Project[] = [
   },
   {
     slug: "canyon-spec-ad",
+    poster: "/posters/canyon-spec-ad.jpg",
     title: "Canyon — Spec Ad",
     client: "Canyon (spec / self-initiated)",
     category: "Spec Ad",
@@ -95,6 +104,7 @@ export const projects: Project[] = [
   },
   {
     slug: "purely-athletics-brand-launch-intro",
+    poster: "/posters/purely-athletics-brand-launch-intro.jpg",
     title: "Purely Athletics — Brand Launch Intro",
     client: "Purely Athletics",
     category: "Brand Launch",
@@ -109,6 +119,8 @@ export const projects: Project[] = [
   },
   {
     slug: "so-well-gym-series",
+    poster: "/posters/so-well-gym-series.jpg",
+    previewUrl: "/previews/so-well-gym-series.mp4",
     title: "SO Well Gym — Results & Stats Series",
     client: "SO Well Gym",
     category: "Vertical Series",
@@ -182,6 +194,8 @@ export const projects: Project[] = [
   },
   {
     slug: "knox-studio-launch",
+    poster: "/posters/knox-studio-launch.jpg",
+    previewUrl: "/previews/knox-studio-launch.mp4",
     title: "KNOX Studio — Launch Campaign",
     client: "KNOX Studio",
     category: "Launch Campaign",
@@ -211,6 +225,7 @@ export const projects: Project[] = [
   },
   {
     slug: "lululemon-event-reel",
+    poster: "/posters/lululemon-event-reel.jpg",
     title: "Lululemon — Collection Event",
     client: "Lululemon",
     category: "Event Coverage",
@@ -225,6 +240,7 @@ export const projects: Project[] = [
   },
   {
     slug: "merrell-influencer-reel",
+    poster: "/posters/merrell-influencer-reel.jpg",
     title: "Merrell — Influencer Content",
     client: "Merrell",
     category: "Influencer Content",
@@ -239,6 +255,7 @@ export const projects: Project[] = [
   },
   {
     slug: "carpatree-influencer-reel",
+    poster: "/posters/carpatree-influencer-reel.jpg",
     title: "Carpatree — Influencer Content",
     client: "Carpatree",
     category: "Influencer Content",
@@ -253,6 +270,7 @@ export const projects: Project[] = [
   },
   {
     slug: "hyrox-warsaw-reel",
+    poster: "/posters/hyrox-warsaw-reel.jpg",
     title: "Hyrox Warsaw — Athlete Reel",
     client: "Vlad Ovchinnikov",
     category: "Sports Content",
@@ -267,6 +285,8 @@ export const projects: Project[] = [
   },
   {
     slug: "porsche-change-studio-reel",
+    poster: "/posters/porsche-change-studio-reel.jpg",
+    previewUrl: "/previews/porsche-change-studio-reel.mp4",
     title: "Porsche × Change Studio",
     client: "Porsche / Change Studio",
     category: "Brand Collaboration",

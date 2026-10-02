@@ -12,10 +12,12 @@ export default function ProjectCard({ project }: { project: Project }) {
       {!project.placeholder && project.videoUrl && (
         <video
           src={project.videoUrl}
+          poster={project.poster}
           className="h-full w-full object-cover"
           muted
           loop
           playsInline
+          preload={project.poster ? "none" : "metadata"}
         />
       )}
       <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/0 to-black/0 p-5 opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">

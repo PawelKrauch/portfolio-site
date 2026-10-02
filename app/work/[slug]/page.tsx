@@ -69,8 +69,11 @@ export default async function ProjectPage({
               >
                 <video
                   src={project.videoUrl}
+                  poster={project.poster}
                   className="h-full w-full object-cover"
                   controls
+                  playsInline
+                  preload="metadata"
                 />
               </div>
             </>
@@ -154,6 +157,23 @@ export default async function ProjectPage({
           {project.bts && (
             <Gallery label="Behind the Scenes" images={project.bts} />
           )}
+
+          <div className="mt-20 flex flex-col items-start gap-5 border-t border-border pt-12 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-2xl font-semibold sm:text-3xl">
+                Want something like this for your brand?
+              </p>
+              <p className="mt-2 text-white/60">
+                Tell me about your project — I reply within 48 hours.
+              </p>
+            </div>
+            <Link
+              href="/#contact"
+              className="flex-shrink-0 rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
+            >
+              Start a project →
+            </Link>
+          </div>
         </div>
       </main>
       <Footer />

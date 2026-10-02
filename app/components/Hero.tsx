@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { scrollToSection } from "./Nav";
 
 const BASE = "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com";
 const LOOP_URL = `${BASE}/krauch-showreel-2025-loop.mp4`;
@@ -136,27 +137,36 @@ export default function Hero() {
         <p className="max-w-md text-balance text-base text-white/80 drop-shadow sm:text-lg">
           Cinematic brand films, delivered lean.
         </p>
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          aria-label="Play showreel with sound"
-          className="mt-2 flex items-center gap-3 rounded-full bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur transition-colors hover:bg-accent"
-        >
-          <svg
-            width="14"
-            height="16"
-            viewBox="0 0 14 16"
-            fill="currentColor"
-            aria-hidden="true"
+        <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row">
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-label="Play showreel with sound"
+            className="flex items-center gap-3 rounded-full bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur transition-colors hover:bg-accent"
           >
-            <path d="M0 1.3v13.4a1 1 0 0 0 1.5.87l11.2-6.7a1 1 0 0 0 0-1.74L1.5.43A1 1 0 0 0 0 1.3Z" />
-          </svg>
-          Watch Showreel (2025)
-        </button>
+            <svg
+              width="14"
+              height="16"
+              viewBox="0 0 14 16"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M0 1.3v13.4a1 1 0 0 0 1.5.87l11.2-6.7a1 1 0 0 0 0-1.74L1.5.43A1 1 0 0 0 0 1.3Z" />
+            </svg>
+            Watch Showreel (2025)
+          </button>
+          <Link
+            href="/#contact"
+            onClick={(e) => scrollToSection(e, "contact")}
+            className="rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-accent hover:bg-accent"
+          >
+            Start a project
+          </Link>
+        </div>
       </div>
 
       <Link
-        href="#work"
+        href="#featured"
         className={`absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-[11px] uppercase tracking-widest text-white/50 transition-opacity duration-1000 hover:text-white ${
           revealed ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
