@@ -20,7 +20,7 @@ export default function Nav() {
       <Link href="/" className="text-sm">
         Paweł Krauch
       </Link>
-      <nav className="flex items-center gap-5 text-sm text-white/70">
+      <nav className="flex items-center gap-4 text-sm text-white/70 sm:gap-5">
         <Link
           href="/#featured"
           onClick={(e) => scrollToSection(e, "featured")}
@@ -38,9 +38,9 @@ export default function Nav() {
         <Link
           href="/#contact"
           onClick={(e) => scrollToSection(e, "contact")}
-          className="transition-colors hover:text-accent"
+          className="whitespace-nowrap rounded-full bg-accent px-3.5 py-1.5 font-medium text-white transition-opacity hover:opacity-90 sm:px-4 sm:py-2"
         >
-          Contact
+          Start a project
         </Link>
       </nav>
     </header>

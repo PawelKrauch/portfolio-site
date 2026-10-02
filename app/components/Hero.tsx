@@ -138,6 +138,13 @@ export default function Hero() {
           Cinematic brand films, delivered lean.
         </p>
         <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row">
+          <Link
+            href="/#contact"
+            onClick={(e) => scrollToSection(e, "contact")}
+            className="rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/30 transition-transform hover:scale-105"
+          >
+            Start a project →
+          </Link>
           <button
             type="button"
             onClick={() => setOpen(true)}
@@ -155,13 +162,6 @@ export default function Hero() {
             </svg>
             Watch Showreel (2025)
           </button>
-          <Link
-            href="/#contact"
-            onClick={(e) => scrollToSection(e, "contact")}
-            className="rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-accent hover:bg-accent"
-          >
-            Start a project
-          </Link>
         </div>
       </div>
 
