@@ -258,21 +258,6 @@ export const projects: Project[] = [
     placeholder: false,
   },
   {
-    slug: "merrell-influencer-reel",
-    poster: "/posters/merrell-influencer-reel.jpg",
-    title: "Merrell — Influencer Content",
-    client: "Merrell",
-    category: "Influencer Content",
-    group: "Social & Events",
-    orientation: "vertical",
-    year: "2026",
-    description:
-      "Influencer-led social content for Merrell — a vertical reel pairing the product with an outdoor, active-lifestyle audience.",
-    videoUrl:
-      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/merrell-influencer-reel.mp4",
-    placeholder: false,
-  },
-  {
     slug: "carpatree-influencer-reel",
     poster: "/posters/carpatree-influencer-reel.jpg",
     title: "Carpatree — Influencer Content",
@@ -285,6 +270,21 @@ export const projects: Project[] = [
       "Influencer-led social content for Polish activewear brand Carpatree — a vertical reel made for fast, native performance on Instagram.",
     videoUrl:
       "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/carpatree-influencer-reel.mp4",
+    placeholder: false,
+  },
+  {
+    slug: "merrell-influencer-reel",
+    poster: "/posters/merrell-influencer-reel.jpg",
+    title: "Merrell — Influencer Content",
+    client: "Merrell",
+    category: "Influencer Content",
+    group: "Social & Events",
+    orientation: "vertical",
+    year: "2026",
+    description:
+      "Influencer-led social content for Merrell — a vertical reel pairing the product with an outdoor, active-lifestyle audience.",
+    videoUrl:
+      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/merrell-influencer-reel.mp4",
     placeholder: false,
   },
   {
