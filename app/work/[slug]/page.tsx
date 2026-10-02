@@ -70,7 +70,7 @@ export default async function ProjectPage({
                 <video
                   src={project.videoUrl}
                   poster={project.poster}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full bg-black object-contain"
                   controls
                   playsInline
                   preload="metadata"
@@ -91,7 +91,7 @@ export default async function ProjectPage({
                   >
                     <video
                       src={clip.videoUrl}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full bg-black object-contain"
                       controls
                     />
                   </div>
@@ -141,7 +141,7 @@ export default async function ProjectPage({
                   >
                     <video
                       src={secondaryVideo.videoUrl}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full bg-black object-contain"
                       controls
                     />
                   </div>
