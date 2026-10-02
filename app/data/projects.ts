@@ -1,4 +1,4 @@
-export type ProjectGroup = "Brand Films" | "Social & Events";
+export type ProjectGroup = "Brand Films" | "Social & Events" | "Private Commissions";
 export type Orientation = "horizontal" | "vertical";
 
 export type SecondaryVideo = {
@@ -318,5 +318,20 @@ export const projects: Project[] = [
       "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/porsche-change-studio.mp4",
     placeholder: false,
     featured: true,
+  },
+  {
+    slug: "padel-private-lifestyle-shoot",
+    poster: "/posters/padel-private-lifestyle-shoot.jpg",
+    title: "Padel — Private Lifestyle Shoot",
+    client: "Private commission",
+    category: "Lifestyle Reel",
+    group: "Private Commissions",
+    orientation: "vertical",
+    year: "2026",
+    description:
+      "A private commission: a personal lifestyle reel built around a padel session — shot and edited with the same care as brand work, made for the client's own channels.",
+    videoUrl:
+      "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/padel-private-lifestyle-shoot.mp4",
+    placeholder: false,
   },
 ];
