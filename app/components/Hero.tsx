@@ -140,30 +140,30 @@ export default function Hero() {
             Cinematic brand films, delivered lean.
           </p>
         </div>
-        <div className="flex flex-col items-center gap-4 sm:flex-row">
+        <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-6">
           <Link
             href="/#contact"
             onClick={(e) => scrollToSection(e, "contact")}
-            className="rounded-full bg-white px-9 py-4 text-base font-semibold text-black shadow-xl shadow-black/40 transition-all hover:scale-105 hover:bg-accent hover:text-white"
+            className="border border-white/70 px-9 py-4 text-xs font-medium uppercase tracking-[0.3em] text-white backdrop-blur-sm transition-colors duration-300 hover:border-white hover:bg-white hover:text-black"
           >
-            Start a project →
+            Start a project
           </Link>
           <button
             type="button"
             onClick={() => setOpen(true)}
             aria-label="Play showreel with sound"
-            className="flex items-center gap-3 rounded-full bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur transition-colors hover:bg-accent"
+            className="flex items-center gap-3 px-4 py-4 text-xs font-medium uppercase tracking-[0.3em] text-white/70 transition-colors hover:text-white"
           >
             <svg
-              width="14"
-              height="16"
+              width="9"
+              height="10"
               viewBox="0 0 14 16"
               fill="currentColor"
               aria-hidden="true"
             >
               <path d="M0 1.3v13.4a1 1 0 0 0 1.5.87l11.2-6.7a1 1 0 0 0 0-1.74L1.5.43A1 1 0 0 0 0 1.3Z" />
             </svg>
-            Watch Showreel (2025)
+            Watch reel
           </button>
         </div>
       </div>

@@ -158,22 +158,20 @@ export default async function ProjectPage({
             <Gallery label="Behind the Scenes" images={project.bts} />
           )}
 
-          <div className="mt-20 flex flex-col items-start gap-5 border-t border-border pt-12 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-2xl font-semibold sm:text-3xl">
-                Want something like this for your brand?
-              </p>
-              <p className="mt-2 text-white/60">
-                Tell me about your project — I reply within 48 hours.
-              </p>
-            </div>
-            <Link
-              href="/#contact"
-              className="flex-shrink-0 rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
-            >
-              Start a project →
-            </Link>
-          </div>
+          <Link
+            href="/#contact"
+            className="group mt-24 block border-t border-border pt-12"
+          >
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/40">
+              Have a project in mind?
+            </p>
+            <p className="mt-4 text-4xl font-medium tracking-tight sm:text-6xl">
+              Let&apos;s make it{" "}
+              <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">
+                →
+              </span>
+            </p>
+          </Link>
         </div>
       </main>
       <Footer />

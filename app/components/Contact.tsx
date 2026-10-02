@@ -46,7 +46,7 @@ export default function Contact() {
 
         <div className="grid gap-12 md:grid-cols-2">
           <div className="flex max-w-md flex-col gap-6">
-            <h3 className="text-3xl font-semibold sm:text-4xl">
+            <h3 className="text-5xl font-medium tracking-tight sm:text-6xl">
               Let&apos;s make something.
             </h3>
             <p className="text-lg text-white/70">
@@ -173,7 +173,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={pending}
-                className="mt-1 rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+                className="mt-1 bg-white px-6 py-4 text-xs font-medium uppercase tracking-[0.3em] text-black transition-colors hover:bg-accent hover:text-white disabled:opacity-60"
               >
                 {pending ? "Sending…" : "Send message"}
               </button>

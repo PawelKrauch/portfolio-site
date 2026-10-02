@@ -47,7 +47,7 @@ export default function ConsentBanner() {
   if (!visible) return null;
 
   return (
-    <div data-consent-banner className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-surface/95 px-6 py-4 backdrop-blur sm:px-10">
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-surface/95 px-6 py-4 backdrop-blur sm:px-10">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-white/70">
           This site uses cookies for analytics and to measure ad performance.
@@ -56,14 +56,14 @@ export default function ConsentBanner() {
           <button
             type="button"
             onClick={() => setConsent("denied")}
-            className="rounded-lg border border-border px-4 py-2 text-sm text-white/70 transition-colors hover:text-foreground"
+            className="border border-white/30 px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.25em] text-white/70 transition-colors hover:border-white hover:text-white"
           >
             Reject
           </button>
           <button
             type="button"
             onClick={() => setConsent("granted")}
-            className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+            className="border border-white bg-white px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.25em] text-black transition-colors hover:bg-transparent hover:text-white"
           >
             Accept
           </button>

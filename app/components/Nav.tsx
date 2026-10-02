@@ -38,9 +38,9 @@ export default function Nav() {
         <Link
           href="/#contact"
           onClick={(e) => scrollToSection(e, "contact")}
-          className="whitespace-nowrap rounded-full bg-accent px-3.5 py-1.5 font-medium text-white transition-opacity hover:opacity-90 sm:px-4 sm:py-2"
+          className="text-white underline decoration-white/40 underline-offset-[6px] transition-colors hover:decoration-white"
         >
-          Start a project
+          Contact
         </Link>
       </nav>
     </header>
