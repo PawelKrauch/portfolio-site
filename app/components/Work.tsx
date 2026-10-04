@@ -25,7 +25,7 @@ export default function Work() {
 
             return (
               <div key={name}>
-                <h3 className="mb-8 text-[11px] font-medium uppercase tracking-[0.3em] text-white/45">{name}</h3>
+                <h3 className="mb-8 text-xs font-medium uppercase font-mono text-white/45">{name}</h3>
                 <div className={`grid gap-x-6 gap-y-12 ${gridClass}`}>
                   {groupProjects.map((project, i) => (
                     <Reveal key={project.slug} delay={i * 80}>

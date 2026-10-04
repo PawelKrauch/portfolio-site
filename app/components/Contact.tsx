@@ -37,7 +37,7 @@ export default function Contact() {
       className="border-t border-border px-6 py-24 sm:px-10 sm:py-32"
     >
       <div className="mx-auto max-w-6xl">
-        <p className="mb-10 text-[11px] font-medium tracking-[0.3em] text-white/40">
+        <p className="mb-10 font-mono text-xs text-white/40">
           (05) CONTACT
         </p>
 
@@ -86,7 +86,7 @@ export default function Contact() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-[11px] uppercase tracking-[0.25em] text-white/45">
+                <label htmlFor="name" className="text-xs uppercase font-mono text-white/45">
                   Name
                 </label>
                 <input
@@ -105,7 +105,7 @@ export default function Contact() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-[11px] uppercase tracking-[0.25em] text-white/45">
+                <label htmlFor="email" className="text-xs uppercase font-mono text-white/45">
                   Email
                 </label>
                 <input
@@ -124,7 +124,7 @@ export default function Contact() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="budget" className="text-[11px] uppercase tracking-[0.25em] text-white/45">
+                <label htmlFor="budget" className="text-xs uppercase font-mono text-white/45">
                   Project budget{" "}
                   <span className="text-white/30">(optional)</span>
                 </label>
@@ -144,7 +144,7 @@ export default function Contact() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="text-[11px] uppercase tracking-[0.25em] text-white/45">
+                <label htmlFor="message" className="text-xs uppercase font-mono text-white/45">
                   Message
                 </label>
                 <textarea
@@ -170,7 +170,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={pending}
-                className="mt-1 bg-white px-6 py-4 text-xs font-medium uppercase tracking-[0.3em] text-black transition-colors hover:bg-transparent hover:text-white hover:outline hover:outline-1 hover:outline-white disabled:opacity-60"
+                className="mt-1 bg-white px-6 py-4 text-xs font-medium uppercase font-mono text-black transition-colors hover:bg-transparent hover:text-white hover:outline hover:outline-1 hover:outline-white disabled:opacity-60"
               >
                 {pending ? "Sending…" : "Send message"}
               </button>

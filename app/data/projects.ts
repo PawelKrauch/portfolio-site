@@ -27,6 +27,8 @@ export type Project = {
   group: ProjectGroup;
   orientation: Orientation;
   year: string;
+  // Length of the main video as mm:ss — shown in the credit-style metadata row.
+  runtime?: string;
   description: string;
   videoUrl?: string;
   // Optional label shown above the hero video — mainly useful when the hero
@@ -42,6 +44,10 @@ export type Project = {
   // Short, small, muted loop (/public path) for the autoplaying homepage
   // tiles, so they don't stream the full-length master just to preview it.
   previewUrl?: string;
+  // Widescreen (16:9) crop of the preview loop + its first frame, used as the
+  // full-screen Featured slide on desktop. Phones fall back to previewUrl.
+  slideUrl?: string;
+  slidePoster?: string;
   secondaryVideos?: SecondaryVideo[];
   // Multi-episode series (e.g. a numbered vertical series) — rendered as a
   // list of full clips below the hero video, in array order.
@@ -71,12 +77,15 @@ export const projects: Project[] = [
     slug: "purely-athletics-adidas-documentary",
     poster: "/posters/purely-athletics-adidas-documentary.jpg",
     previewUrl: "/previews/purely-athletics-adidas-documentary.mp4",
+    slideUrl: "/slides/purely-athletics-adidas-documentary.mp4",
+    slidePoster: "/slides/purely-athletics-adidas-documentary.jpg",
     title: "Purely Athletics × Adidas — Documentary",
     client: "Purely Athletics / Adidas",
     category: "Documentary",
     group: "Brand Films",
     orientation: "horizontal",
     year: "2026",
+    runtime: "09:21",
     description:
       "A 12-minute brand documentary for Purely Athletics and Adidas — a long-form piece built to carry the brand's story with the pacing and polish of a produced film.",
     videoUrl:
@@ -99,6 +108,7 @@ export const projects: Project[] = [
     group: "Brand Films",
     orientation: "horizontal",
     year: "2026",
+    runtime: "00:29",
     description:
       "A self-initiated spec ad for Canyon, taken from concept through to final grade — an exercise in a cinematic, product-led idea executed end to end.",
     videoUrl:
@@ -114,6 +124,7 @@ export const projects: Project[] = [
     group: "Brand Films",
     orientation: "vertical",
     year: "2026",
+    runtime: "00:24",
     description:
       "A short launch film introducing the Purely Athletics brand — a fast, energetic vertical cut made to open the campaign and set its tone.",
     videoUrl:
@@ -124,12 +135,15 @@ export const projects: Project[] = [
     slug: "so-well-gym-series",
     poster: "/posters/so-well-gym-series.jpg",
     previewUrl: "/previews/so-well-gym-series.mp4",
+    slideUrl: "/slides/so-well-gym-series.mp4",
+    slidePoster: "/slides/so-well-gym-series.jpg",
     title: "SO Well Gym — Results & Stats Series",
     client: "SO Well Gym",
     category: "Vertical Series",
     group: "Brand Films",
     orientation: "vertical",
     year: "2026",
+    runtime: "00:48",
     description:
       "A four-episode vertical series built around real member results and stats. It grew entirely through organic reach — 80,000+ views on an account of roughly 6,000 followers — proof of content that performs without paid spend.",
     videoUrl:
@@ -199,12 +213,15 @@ export const projects: Project[] = [
     slug: "knox-studio-launch",
     poster: "/posters/knox-studio-launch.jpg",
     previewUrl: "/previews/knox-studio-launch.mp4",
+    slideUrl: "/slides/knox-studio-launch.mp4",
+    slidePoster: "/slides/knox-studio-launch.jpg",
     title: "KNOX Studio — Launch Campaign",
     client: "KNOX Studio",
     category: "Launch Campaign",
     group: "Social & Events",
     orientation: "vertical",
     year: "2026",
+    runtime: "00:11",
     description:
       "A six-reel Instagram launch campaign for KNOX Studio, the first Lululemon-powered studio in Poland — a coordinated rollout of short-form pieces to introduce the space and its method.",
     videoUrl:
@@ -236,6 +253,7 @@ export const projects: Project[] = [
     group: "Social & Events",
     orientation: "vertical",
     year: "2026",
+    runtime: "00:29",
     description:
       "Summer-in-the-city styling story for Zalando with creator Janek — \"Every summer has a story\" — shot and cut as a fast vertical reel for Instagram.",
     videoUrl:
@@ -251,6 +269,7 @@ export const projects: Project[] = [
     group: "Social & Events",
     orientation: "vertical",
     year: "2026",
+    runtime: "00:35",
     description:
       "Live, unscripted event coverage shot solo — a talking-head reel with Lululemon's collection rep, captured and turned around fast on location.",
     videoUrl:
@@ -266,6 +285,7 @@ export const projects: Project[] = [
     group: "Social & Events",
     orientation: "vertical",
     year: "2026",
+    runtime: "00:18",
     description:
       "Influencer-led social content for Polish activewear brand Carpatree — a vertical reel made for fast, native performance on Instagram.",
     videoUrl:
@@ -281,6 +301,7 @@ export const projects: Project[] = [
     group: "Social & Events",
     orientation: "vertical",
     year: "2026",
+    runtime: "00:27",
     description:
       "Influencer-led social content for Merrell — a vertical reel pairing the product with an outdoor, active-lifestyle audience.",
     videoUrl:
@@ -296,6 +317,7 @@ export const projects: Project[] = [
     group: "Social & Events",
     orientation: "vertical",
     year: "2026",
+    runtime: "00:21",
     description:
       "A vertical social reel for Warsaw-based Hyrox athlete Vlad Ovchinnikov, cut to carry the pace and intensity of competitive functional-fitness training.",
     videoUrl:
@@ -306,12 +328,15 @@ export const projects: Project[] = [
     slug: "porsche-change-studio-reel",
     poster: "/posters/porsche-change-studio-reel.jpg",
     previewUrl: "/previews/porsche-change-studio-reel.mp4",
+    slideUrl: "/slides/porsche-change-studio-reel.mp4",
+    slidePoster: "/slides/porsche-change-studio-reel.jpg",
     title: "Porsche × Change Studio",
     client: "Porsche / Change Studio",
     category: "Brand Collaboration",
     group: "Social & Events",
     orientation: "vertical",
     year: "2026",
+    runtime: "00:15",
     description:
       "An Instagram reel produced in collaboration with Porsche and Change Studio — a short, high-gloss vertical piece cut for social.",
     videoUrl:
@@ -329,6 +354,7 @@ export const projects: Project[] = [
     group: "Social & Events",
     orientation: "vertical",
     year: "2026",
+    runtime: "00:16",
     description:
       "A personal project — a lifestyle reel built around a padel session, shot and edited to the same standard as brand work.",
     videoUrl:

@@ -3,22 +3,30 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { projects, type Project } from "../data/projects";
-import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 
-// Big "hero" cards for the flagged featured pieces — each its own animated
-// screen that clicks through to the full detail page (data + videos). Sits
-// between the showreel Hero and the full Work grid.
+// Featured pieces as full-screen "film slides": each one fills the viewport
+// with its looping preview and a credit-style row (title, then client /
+// category / runtime / year in mono, each on a hairline) — reads like the
+// opening credits of the film, and clicks through to the detail page.
 //
-// Tiles are uniform squares (object-cover crop) so the grid stays symmetrical
-// whatever the footage shape; the native aspect shows in full on the detail
-// page.
+// Desktop gets a 16:9 crop (slideUrl) so vertical footage isn't stretched
+// soft; phones keep the native vertical loop (previewUrl).
 //
 // Playback is lazy: videos are NOT preloaded or autoplayed on page load — they
-// only start once the card scrolls into view (and pause when it leaves). This
-// keeps the (large) featured clips from competing with the hero reel for
-// bandwidth while the hero is still on screen.
-function FeaturedCard({ project }: { project: Project }) {
+// only start once the slide scrolls into view (and pause when it leaves), so
+// they never compete with the hero reel for bandwidth.
+const DESKTOP = "(min-width: 640px)";
+
+function FeaturedSlide({
+  project,
+  index,
+  total,
+}: {
+  project: Project;
+  index: number;
+  total: number;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -40,41 +48,55 @@ function FeaturedCard({ project }: { project: Project }) {
     return () => observer.disconnect();
   }, []);
 
+  const credits = [project.client, project.category, project.runtime, project.year].filter(
+    Boolean
+  );
+  const pad = (n: number) => String(n).padStart(2, "0");
+
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="group relative block aspect-[4/5] overflow-hidden bg-surface"
+      className="group relative block h-[100svh] w-full overflow-hidden bg-surface"
     >
       {project.videoUrl && (
         <video
           ref={videoRef}
-          src={project.previewUrl ?? project.videoUrl}
-          poster={project.cover ?? project.poster}
-          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          poster={project.slidePoster ?? project.cover ?? project.poster}
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1500ms] ease-out group-hover:scale-[1.02]"
           muted
           loop
           playsInline
           preload="none"
-        />
+        >
+          {project.slideUrl && (
+            <source src={project.slideUrl} media={DESKTOP} type="video/mp4" />
+          )}
+          <source src={project.previewUrl ?? project.videoUrl} type="video/mp4" />
+        </video>
       )}
-      <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/10 to-black/0 p-5 sm:p-6">
-        <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-white/60">
-          {project.category}
-        </p>
-        <p className="mt-3 font-serif text-3xl leading-tight sm:text-4xl">{project.title}</p>
-        <p className="mt-2 text-[11px] uppercase tracking-[0.25em] text-white/50">
-          {project.client} · {project.year}
-        </p>
-        {project.stats && (
-          <div className="mt-4 hidden gap-8 sm:flex">
-            {project.stats.map((stat) => (
-              <div key={stat.label}>
-                <p className="font-serif text-3xl text-white">{stat.value}</p>
-                <p className="text-[11px] text-white/50">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        )}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/30" />
+
+      <p className="absolute top-24 left-6 font-mono text-xs text-white/60 sm:left-10">
+        ({pad(index + 1)}/{pad(total)})
+      </p>
+
+      <div className="absolute inset-x-0 bottom-0 px-6 pb-8 sm:px-10 sm:pb-10">
+        <div className="grid gap-x-6 gap-y-5 sm:grid-cols-[2.4fr_repeat(4,1fr)] sm:items-end">
+          <h3 className="border-b border-white/25 pb-3 font-serif text-4xl leading-none tracking-tight sm:text-6xl">
+            {project.title.split(" — ")[0]}
+          </h3>
+          {credits.map((item) => (
+            <p
+              key={item}
+              className="hidden border-b border-white/25 pb-3 font-mono text-xs uppercase text-white/75 sm:block"
+            >
+              {item}
+            </p>
+          ))}
+          <p className="font-mono text-xs uppercase text-white/75 sm:hidden">
+            {credits.join(" · ")}
+          </p>
+        </div>
       </div>
     </Link>
   );
@@ -85,17 +107,14 @@ export default function FeaturedWork() {
   if (featured.length === 0) return null;
 
   return (
-    <section id="featured" className="px-6 py-16 sm:px-10">
-      <div className="mx-auto max-w-6xl">
+    <section id="featured" className="pt-16">
+      <div className="mx-auto max-w-6xl px-6 sm:px-10">
         <SectionHeading index="01" title="Featured" />
-
-        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2">
-          {featured.map((project, i) => (
-            <Reveal key={project.slug} delay={i * 80}>
-              <FeaturedCard project={project} />
-            </Reveal>
-          ))}
-        </div>
+      </div>
+      <div>
+        {featured.map((project, i) => (
+          <FeaturedSlide key={project.slug} project={project} index={i} total={featured.length} />
+        ))}
       </div>
     </section>
   );

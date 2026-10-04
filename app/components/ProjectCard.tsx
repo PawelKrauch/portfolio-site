@@ -20,7 +20,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         )}
       </div>
       <p className="mt-4 font-serif text-2xl leading-tight">{project.title}</p>
-      <p className="mt-1 text-[11px] uppercase tracking-[0.25em] text-white/45">
+      <p className="mt-1 text-xs uppercase font-mono text-white/45">
         {project.category} · {project.year}
       </p>
     </Link>

@@ -47,9 +47,9 @@ export default async function ProjectPage({
         <div className="mx-auto max-w-4xl">
           <Link
             href="/#work"
-            className="text-[11px] uppercase tracking-[0.25em] text-white/50 hover:text-white"
+            className="text-xs uppercase font-mono text-white/50 hover:text-white"
           >
-            ← Back to work
+            [← Back to work]
           </Link>
 
           {!hasEpisodes && !project.placeholder && project.videoUrl && (
@@ -104,7 +104,7 @@ export default async function ProjectPage({
             <h1 className="font-serif text-5xl leading-none tracking-tight sm:text-7xl">
               {project.title}
             </h1>
-            <p className="text-[11px] uppercase tracking-[0.25em] text-white/50">
+            <p className="text-xs uppercase font-mono text-white/50">
               {project.client} · {project.category} · {project.year}
             </p>
             <p className="mt-4 max-w-2xl text-lg text-white/70">
@@ -162,7 +162,7 @@ export default async function ProjectPage({
             href="/#contact"
             className="group mt-24 block border-t border-border pt-12"
           >
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/40">
+            <p className="text-xs font-medium uppercase font-mono text-white/40">
               Have a project in mind?
             </p>
             <p className="mt-4 font-serif text-5xl tracking-tight sm:text-7xl">

@@ -130,7 +130,7 @@ export default function Hero() {
               : "pointer-events-none translate-y-4 opacity-0"
           }`}
         >
-          <p className="text-[11px] font-medium uppercase tracking-[0.4em] text-white/60">
+          <p className="text-xs font-medium uppercase font-mono text-white/60">
             Filmmaker &amp; Director
           </p>
           <h1 className="text-balance font-serif text-6xl leading-[0.95] tracking-tight drop-shadow-lg sm:text-9xl">
@@ -144,7 +144,7 @@ export default function Hero() {
           <Link
             href="/#contact"
             onClick={(e) => scrollToSection(e, "contact")}
-            className="border border-white/70 px-9 py-4 text-xs font-medium uppercase tracking-[0.3em] text-white backdrop-blur-sm transition-colors duration-300 hover:border-white hover:bg-white hover:text-black"
+            className="border border-white/70 px-9 py-4 text-xs font-medium uppercase font-mono text-white backdrop-blur-sm transition-colors duration-300 hover:border-white hover:bg-white hover:text-black"
           >
             Start a project
           </Link>
@@ -152,7 +152,7 @@ export default function Hero() {
             type="button"
             onClick={() => setOpen(true)}
             aria-label="Play showreel with sound"
-            className="flex items-center gap-3 px-4 py-4 text-xs font-medium uppercase tracking-[0.3em] text-white/70 transition-colors hover:text-white"
+            className="flex items-center gap-3 px-4 py-4 text-xs font-medium uppercase font-mono text-white/70 transition-colors hover:text-white"
           >
             <svg
               width="9"

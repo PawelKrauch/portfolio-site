@@ -71,14 +71,14 @@ export default function ConsentBanner() {
           <button
             type="button"
             onClick={() => setConsent("denied")}
-            className="border border-white/30 px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.25em] text-white/70 transition-colors hover:border-white hover:text-white"
+            className="border border-white/30 px-5 py-2.5 text-xs font-medium uppercase font-mono text-white/70 transition-colors hover:border-white hover:text-white"
           >
             Reject
           </button>
           <button
             type="button"
             onClick={() => setConsent("granted")}
-            className="border border-white bg-white px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.25em] text-black transition-colors hover:bg-transparent hover:text-white"
+            className="border border-white bg-white px-5 py-2.5 text-xs font-medium uppercase font-mono text-black transition-colors hover:bg-transparent hover:text-white"
           >
             Accept
           </button>

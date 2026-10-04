@@ -22,7 +22,7 @@ export default function About() {
               films made to the same standard.
             </p>
           </div>
-          <div className="flex flex-col gap-2 text-[11px] uppercase tracking-[0.25em]">
+          <div className="flex flex-col gap-2 text-xs uppercase font-mono">
             <a
               href="mailto:pavelkrauch@gmail.com"
               className="text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"

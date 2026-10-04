@@ -9,7 +9,7 @@ export default function SectionHeading({
 }) {
   return (
     <div className="mb-14 flex flex-col gap-3 sm:mb-20">
-      <span className="text-[11px] font-medium tracking-[0.3em] text-white/40">
+      <span className="font-mono text-xs text-white/40">
         ({index})
       </span>
       <h2 className="font-serif text-5xl leading-none tracking-tight sm:text-7xl">
