@@ -84,7 +84,7 @@ export const projects: Project[] = [
     orientation: "horizontal",
     year: "2026",
     description:
-      "A 12-minute brand documentary for Purely Athletics and Adidas — a long-form piece built to carry the brand's story with the pacing and polish of a produced film.",
+      "A long-form brand documentary for Purely Athletics and Adidas — a piece built to carry the brand's story with the pacing and polish of a produced film.",
     videoUrl:
       "https://kbikrdsbxqgu2gwf.public.blob.vercel-storage.com/purely-athletics-adidas-documentary.mp4",
     placeholder: false,
