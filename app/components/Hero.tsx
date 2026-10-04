@@ -18,7 +18,7 @@ const MOBILE_POSTER_URL = `${BASE}/krauch-showreel-2025-9x16-poster.jpg`;
 const MOBILE_BREAKPOINT = "(max-width: 639px)";
 
 // The desktop reel opens on a baked-in "SHOWREEL / KRAUCH MEDIA 2025" title
-// card (~0–5s). We let that play first, then fade in the headline once it's
+// card (~0–1.5s). We let that play first, then fade in the headline once it's
 // done so the two never overlap. After the first pass the loop restarts
 // *after* the title card so it never replays behind the headline. The
 // click-to-play modal plays the whole reel (title card + sound) from the start.
