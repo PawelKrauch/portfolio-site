@@ -8,7 +8,7 @@ export default function Brands() {
       <div className="mx-auto max-w-6xl">
         <SectionHeading index="03" title="Brands" />
         <Reveal>
-          <p className="font-serif text-3xl leading-snug text-white/85 sm:text-5xl sm:leading-tight">
+          <p className="text-2xl font-medium leading-snug tracking-tight text-white/85 sm:text-4xl sm:leading-snug">
             {clients
               .filter((client) => !client.placeholder)
               .map((client, i, list) => (
