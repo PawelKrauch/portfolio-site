@@ -22,7 +22,7 @@ const MOBILE_BREAKPOINT = "(max-width: 639px)";
 // done so the two never overlap. After the first pass the loop restarts
 // *after* the title card so it never replays behind the headline. The
 // click-to-play modal plays the whole reel (title card + sound) from the start.
-const INTRO_END = 5;
+const INTRO_END = 1.5;
 
 export default function Hero() {
   const bgRef = useRef<HTMLVideoElement>(null);
