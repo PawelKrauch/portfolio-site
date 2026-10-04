@@ -6,6 +6,7 @@ const SITE_URL = "https://pawelkrauch.com";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: SITE_URL, changeFrequency: "monthly", priority: 1 },
+    { url: `${SITE_URL}/privacy`, changeFrequency: "yearly", priority: 0.2 },
     ...projects
       .filter((p) => !p.placeholder)
       .map((p) => ({
