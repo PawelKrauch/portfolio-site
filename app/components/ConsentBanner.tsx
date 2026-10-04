@@ -34,6 +34,18 @@ export function subscribeToConsent(callback: () => void) {
   return () => window.removeEventListener(CONSENT_EVENT, callback);
 }
 
+// Clears the stored decision so the banner shows again ("Cookie settings" in
+// the footer). Reloads so an already-loaded Meta Pixel is dropped if the
+// visitor now rejects.
+export function resetConsent() {
+  try {
+    window.localStorage.removeItem(CONSENT_KEY);
+  } catch {
+    // Ignore — nothing stored to clear.
+  }
+  window.location.reload();
+}
+
 const getServerConsentSnapshot = () => null;
 
 export default function ConsentBanner() {
@@ -50,7 +62,10 @@ export default function ConsentBanner() {
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-surface/95 px-6 py-4 backdrop-blur sm:px-10">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-white/70">
-          This site uses cookies for analytics and to measure ad performance.
+          This site uses cookies to measure ad performance.{" "}
+          <a href="/privacy" className="underline underline-offset-4 hover:text-white">
+            Privacy policy
+          </a>
         </p>
         <div className="flex shrink-0 gap-3">
           <button
