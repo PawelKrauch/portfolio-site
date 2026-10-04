@@ -6,7 +6,7 @@ export default function About() {
       <div className="mx-auto max-w-6xl">
         <SectionHeading index="04" title="Info" />
         <div className="flex flex-col gap-10">
-          <div className="flex max-w-3xl flex-col gap-8 font-serif text-2xl leading-snug text-white/85 sm:text-3xl">
+          <div className="flex max-w-2xl flex-col gap-6 text-lg leading-relaxed text-white/75 sm:text-xl">
             <p>
               I&apos;m a freelance filmmaker and director working with brands
               and agencies on commercial and branded content. I lean on AI

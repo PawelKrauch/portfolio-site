@@ -7,7 +7,7 @@ import SectionHeading from "./SectionHeading";
 
 // Featured pieces as full-screen "film slides": each one fills the viewport
 // with its looping preview and a credit-style row (title, then client /
-// category / runtime / year in mono, each on a hairline) — reads like the
+// category / year in mono, each on a hairline) — reads like the
 // opening credits of the film, and clicks through to the detail page.
 //
 // Desktop gets a 16:9 crop (slideUrl) so vertical footage isn't stretched
@@ -48,7 +48,7 @@ function FeaturedSlide({
     return () => observer.disconnect();
   }, []);
 
-  const credits = [project.client, project.category, project.runtime, project.year].filter(
+  const credits = [project.client, project.category, project.year].filter(
     Boolean
   );
   const pad = (n: number) => String(n).padStart(2, "0");
@@ -81,7 +81,7 @@ function FeaturedSlide({
       </p>
 
       <div className="absolute inset-x-0 bottom-0 px-6 pb-8 sm:px-10 sm:pb-10">
-        <div className="grid gap-x-6 gap-y-5 sm:grid-cols-[2.4fr_repeat(4,1fr)] sm:items-end">
+        <div className="grid gap-x-6 gap-y-5 sm:grid-cols-[2.4fr_repeat(3,1fr)] sm:items-end">
           <h3 className="border-b border-white/25 pb-3 font-serif text-4xl leading-none tracking-tight sm:text-6xl">
             {project.title.split(" — ")[0]}
           </h3>
