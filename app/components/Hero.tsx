@@ -63,10 +63,23 @@ export default function Hero() {
     };
 
     video.addEventListener("loadedmetadata", onLoadedMetadata);
+    // On a reload the reel can come from cache fast enough that metadata is
+    // already loaded before this effect attaches its listener.
+    if (video.readyState >= 1) onLoadedMetadata();
     video.addEventListener("timeupdate", onTime);
     video.addEventListener("ended", loopAfterIntro);
-    // Fallback in case timeupdate is throttled before reaching INTRO_END.
-    const fallback = window.setTimeout(() => setRevealed(true), INTRO_END * 1000 + 500);
+
+    // Fallbacks in case timeupdate is throttled: count the title card from
+    // when playback actually starts (not page load, or a slow connection would
+    // reveal the headline on top of the still-showing card), with a hard cap
+    // in case the reel never starts at all.
+    let fallback = 0;
+    const onPlaying = () => {
+      window.clearTimeout(fallback);
+      fallback = window.setTimeout(() => setRevealed(true), INTRO_END * 1000 + 500);
+    };
+    video.addEventListener("playing", onPlaying, { once: true });
+    const hardCap = window.setTimeout(() => setRevealed(true), 9000);
 
     // Mobile autoplay hardening. The markup is already muted + playsInline, but
     // some phones (notably iOS Low Power Mode / data-saver) block even muted
@@ -75,9 +88,11 @@ export default function Hero() {
     // user interaction so it never stays a still frame.
     video.muted = true;
     video.playsInline = true;
-    const tryPlay = () => void video.play().catch(() => {});
-    tryPlay();
-    const onFirstInteract = () => tryPlay();
+    const tryPlay = () => video.play();
+    // Autoplay blocked: the reel stays on its poster (no title card), so show
+    // the headline right away instead of waiting.
+    tryPlay().catch(() => setRevealed(true));
+    const onFirstInteract = () => void tryPlay().catch(() => {});
     const gestureOpts = { once: true, passive: true } as const;
     window.addEventListener("touchstart", onFirstInteract, gestureOpts);
     window.addEventListener("pointerdown", onFirstInteract, gestureOpts);
@@ -86,7 +101,9 @@ export default function Hero() {
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
       video.removeEventListener("timeupdate", onTime);
       video.removeEventListener("ended", loopAfterIntro);
+      video.removeEventListener("playing", onPlaying);
       window.clearTimeout(fallback);
+      window.clearTimeout(hardCap);
       window.removeEventListener("touchstart", onFirstInteract);
       window.removeEventListener("pointerdown", onFirstInteract);
     };
@@ -121,15 +138,17 @@ export default function Hero() {
       {/* Darkening layer for headline legibility over the footage */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
 
-      <div className="relative z-10 flex max-w-3xl flex-col items-center gap-7 px-6 text-center">
-        {/* Headline waits for the title card; the CTAs below never do. */}
-        <div
-          className={`flex flex-col items-center gap-5 transition-all duration-1000 ease-out ${
-            revealed
-              ? "translate-y-0 opacity-100"
-              : "pointer-events-none translate-y-4 opacity-0"
-          }`}
-        >
+      {/* Headline and CTAs wait for the reel's baked-in title card so they
+          never sit on top of it; the header's [Contact] is there from the
+          first second. */}
+      <div
+        className={`relative z-10 flex max-w-3xl flex-col items-center gap-7 px-6 text-center transition-all duration-1000 ease-out ${
+          revealed
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-4 opacity-0"
+        }`}
+      >
+        <div className="flex flex-col items-center gap-5">
           <p className="text-xs font-medium uppercase font-mono text-white/60">
             Filmmaker &amp; Director
           </p>
