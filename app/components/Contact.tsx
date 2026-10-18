@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useEffect } from "react";
+import { track } from "@vercel/analytics";
 import { submitContact, type ContactState } from "../actions/contact";
 import { trackLead } from "../lib/pixel";
 
@@ -27,8 +28,13 @@ export default function Contact() {
   // Fire once per successful submission — Meta Pixel's Lead conversion event,
   // used to optimize/measure ad delivery. No-ops safely if the Pixel hasn't
   // loaded (no ID configured yet, or the visitor declined cookie consent).
+  // Also logs a cookieless Vercel Analytics "Lead" event, so the dashboard can
+  // show conversion rate (Lead visitors ÷ total visitors) for organic traffic too.
   useEffect(() => {
-    if (state.status === "success") trackLead();
+    if (state.status === "success") {
+      trackLead();
+      track("Lead");
+    }
   }, [state.status]);
 
   return (
